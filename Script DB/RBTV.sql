@@ -35,7 +35,7 @@ GO
 
 ALTER TABLE NhanVien
 ADD CONSTRAINT Cons_TuoiHon18
-CHECK (datediff(year,getdate(),NgaySinh) > 18)  
+CHECK (datediff(year,NgaySinh,getdate()) > 18)  
 GO
 
 ALTER TABLE NhaThue
@@ -90,7 +90,7 @@ begin
 	set @tp=(select TenTP from inserted)
 
 	if not exists(select * from Nha where TenDuong=@duong and TenKV=@kv and TenQuan=@quan and TenTP=@tp)
-		insert into ChiNhanh select * from inserted
+		insert into Nha select * from inserted
 	else print 'Dia chi nha khong hop le!'
 
 end
