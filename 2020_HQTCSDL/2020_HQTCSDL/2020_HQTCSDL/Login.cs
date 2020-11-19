@@ -63,6 +63,13 @@ namespace _2020_HQTCSDL
                             this.Hide();
                             break;
                         }
+                    case "QuanLyChiNhanh":
+                        {
+                            QuanLyChiNhanh fr = new QuanLyChiNhanh();
+                            fr.Show();
+                            this.Hide();
+                            break;
+                        }
                     default:
                         {
                             MessageBox.Show("Something Wrong!");
@@ -91,6 +98,11 @@ namespace _2020_HQTCSDL
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usernameTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
