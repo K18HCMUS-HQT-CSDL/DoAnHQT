@@ -35,7 +35,7 @@ GO
 
 ALTER TABLE NhanVien
 ADD CONSTRAINT Cons_TuoiHon18
-CHECK (datediff(year,NgaySinh,getdate()) > 18)  
+CHECK (datediff(year, NgaySinh, getdate()) > 18)  
 GO
 
 ALTER TABLE NhaThue
@@ -51,6 +51,7 @@ GO
 
 --------------------------------TRIGGER RANG BUOC
 -- Trigger rang buoc khi them mot chi nhanh
+-- Nội dung: Không được thêm chi nhánh có địa chỉ trùng với địa chỉ các chi nhánh khác
 create trigger TR_ChiNhanh_BF_INS
 on ChiNhanh
 Instead of Insert
@@ -74,6 +75,7 @@ end
 go
 
 -- Trigger rang buoc khi them mot nha
+-- Nội dung: Không được thêm nhà có địa chỉ trùng với địa chỉ nhà khác
 create trigger TR_Nha_BF_INS
 on Nha
 Instead of Insert
@@ -98,7 +100,7 @@ go
 
 
 -- Trigger truoc khi them mot lich su xem se kiem tra
---Ngay xem phai trong khoang ngay dang va ngayHH cua can nha(thue hoac ban)
+-- Nội dung: Ngày xem phải trong khoảng ngày đăng và ngày hết hạn của căn nhà (thuê/bán)
 create trigger TR_LichSuXem_BF_INS
 on LichSuXem
 Instead of Insert
@@ -273,7 +275,5 @@ declare @MaNha char(8)
 
 end
 go
-
-
 
 
