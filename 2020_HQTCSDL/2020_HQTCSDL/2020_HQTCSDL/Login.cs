@@ -56,16 +56,38 @@ namespace _2020_HQTCSDL
                 MessageBox.Show("Connection Open for " +result +" !");
                 switch(result)
                 {
-                    case "NguoiThue":
+                    
+                    case "CEO":
                         {
-                            NguoiThue fr = new NguoiThue();
-                            fr.Show();
+                            //CEO fr = new CEO();
+                            //fr.Show();
                             this.Hide();
                             break;
                         }
                     case "QuanLyChiNhanh":
                         {
                             QuanLyChiNhanh fr = new QuanLyChiNhanh();
+                            fr.Show();
+                            this.Hide();
+                            break;
+                        }
+                    case "NhanVien":
+                        {
+                            //NhanVien fr = new NhanVien();
+                            //fr.Show();
+                            this.Hide();
+                            break;
+                        }
+                    case "ChuNha":
+                        {
+                            //ChuNha fr = new ChuNha();
+                            //fr.Show();
+                            this.Hide();
+                            break;
+                        }
+                    case "NguoiThue":
+                        {
+                            NguoiThue fr = new NguoiThue();
                             fr.Show();
                             this.Hide();
                             break;
