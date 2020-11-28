@@ -27,7 +27,7 @@ namespace _2020_HQTCSDL
                 MessageBox.Show("Please provide Username and Password");
                 return;
             }
-            SqlConnection con = new SqlConnection(@"Data Source=ICEBEAR-PC\YENNGOCC;Database=HQT_CSDL;Persist Security Info=True;User ID="+username+";Password="+password);
+            SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-B644G9B6\SQLEXPRESS;Database=HQT_CSDL;Persist Security Info=True;User ID=" + username+";Password="+password);
             bool checkLog = true;
             try
             {
@@ -59,8 +59,8 @@ namespace _2020_HQTCSDL
                     
                     case "CEO":
                         {
-                            //CEO fr = new CEO();
-                            //fr.Show();
+                            CEO fr = new CEO();
+                            fr.Show();
                             this.Hide();
                             break;
                         }
