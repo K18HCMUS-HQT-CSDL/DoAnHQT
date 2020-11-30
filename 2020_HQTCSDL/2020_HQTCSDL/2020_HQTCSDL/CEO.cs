@@ -108,7 +108,7 @@ namespace _2020_HQTCSDL
 
         private void button6_Click(object sender, EventArgs e)
         {
-            CapNhapNV CNNV = new CapNhapNV();
+            Form5 CNNV = new Form5();
             SqlConnection con = new SqlConnection(conString);
             con.Open();
             if (CNNV.ShowDialog() == DialogResult.OK)
@@ -132,19 +132,88 @@ namespace _2020_HQTCSDL
         private void button7_Click(object sender, EventArgs e)
         {
             Form6 TXCN = new Form6();
-            TXCN.Show();
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            if (TXCN.ShowDialog() == DialogResult.OK)
+            {
+                string q = "ThemCN";
+                SqlCommand cmd = new SqlCommand(q, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@mcn", SqlDbType.Char).Value = TXCN.MyvalMaCN.Trim();
+                cmd.Parameters.AddWithValue("@td", SqlDbType.NVarChar).Value = TXCN.Myvaltd.Trim();
+                cmd.Parameters.AddWithValue("@tq", SqlDbType.NVarChar).Value = TXCN.Myvaltq.Trim();
+                cmd.Parameters.AddWithValue("@tkv", SqlDbType.NVarChar).Value = TXCN.Myvaltkv.Trim();
+                cmd.Parameters.AddWithValue("@ttp", SqlDbType.NVarChar).Value = TXCN.Myvalttp.Trim();
+                cmd.Parameters.AddWithValue("@sdt", SqlDbType.Char).Value = TXCN.Myvalsdt.Trim();
+                cmd.Parameters.AddWithValue("@fax", SqlDbType.VarChar).Value = TXCN.Myvalfax.Trim();
+                cmd.Parameters.AddWithValue("@manv", SqlDbType.Char).Value = TXCN.MyvalMaNV.Trim();
+                cmd.ExecuteNonQuery();
+                string showUp = "Select * from ChiNhanh";
+                SqlDataAdapter cmd3 = new SqlDataAdapter(showUp, con);
+                DataTable ck3 = new DataTable();
+                cmd3.Fill(ck3);
+                dataGridView1.DataSource = ck3;
+                con.Close();
+            }
+            else if (TXCN.ShowDialog() == DialogResult.Yes)
+            {
+                string q = "XoaCN";
+                SqlCommand cmd = new SqlCommand(q, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@mcn", SqlDbType.Char).Value = TXCN.MyvalMaCN.Trim();
+                cmd.ExecuteNonQuery();
+                string showUp = "Select * from ChiNhanh";
+                SqlDataAdapter cmd3 = new SqlDataAdapter(showUp, con);
+                DataTable ck3 = new DataTable();
+                cmd3.Fill(ck3);
+                dataGridView1.DataSource = ck3;
+                con.Close();
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            CapNhapChiNhanh CNCN = new CapNhapChiNhanh();
-            CNCN.Show();
+            CapNhapCN CNCN = new CapNhapCN();
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            if (CNCN.ShowDialog() == DialogResult.OK)
+            {
+                string q = "CapNhapCN";
+                SqlCommand cmd = new SqlCommand(q, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@mcn", SqlDbType.Char).Value = CNCN.MyvalMaCN.Trim();
+                cmd.Parameters.AddWithValue("@td", SqlDbType.NVarChar).Value = CNCN.Myvaltd.Trim();
+                cmd.Parameters.AddWithValue("@tq", SqlDbType.NVarChar).Value = CNCN.Myvaltq.Trim();
+                cmd.Parameters.AddWithValue("@tkv", SqlDbType.NVarChar).Value = CNCN.Myvaltkv.Trim();
+                cmd.Parameters.AddWithValue("@ttp", SqlDbType.NVarChar).Value = CNCN.Myvalttp.Trim();
+                cmd.Parameters.AddWithValue("@sdt", SqlDbType.Char).Value = CNCN.Myvalsdt.Trim();
+                cmd.Parameters.AddWithValue("@fax", SqlDbType.VarChar).Value = CNCN.Myvalfax.Trim();
+                cmd.Parameters.AddWithValue("@manv", SqlDbType.Char).Value = CNCN.MyvalMaNV.Trim();
+                cmd.ExecuteNonQuery();
+                string showUp = "Select * from ChiNhanh";
+                SqlDataAdapter cmd3 = new SqlDataAdapter(showUp, con);
+                DataTable ck3 = new DataTable();
+                cmd3.Fill(ck3);
+                dataGridView1.DataSource = ck3;
+                con.Close();
+            }
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            TimNV TNV = new TimNV();
-            TNV.Show();
+            Form9 TNV = new Form9();
+            SqlConnection con = new SqlConnection(conString);
+            con.Open();
+            if (TNV.ShowDialog() == DialogResult.OK)
+            {
+                //TimNha.Show();
+                string query = "Select * from NhanVien where MaNV='" + TNV.Myval.Trim() + "'";
+                SqlDataAdapter cmd2 = new SqlDataAdapter(query, con);
+                DataTable ck2 = new DataTable();
+                cmd2.Fill(ck2);
+                dataGridView1.DataSource = ck2;
+                con.Close();
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)

@@ -46,9 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CEO.cs">
+    <Compile Include="CapNhapCN-CEO.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CapNhapCN-CEO.designer.cs">
+      <DependentUpon>CapNhapCN-CEO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CapNhapNV-CEO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapNhapNV-CEO.designer.cs">
+      <DependentUpon>CapNhapNV-CEO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CEO.cs" />
     <Compile Include="CEO.designer.cs">
       <DependentUpon>CEO.cs</DependentUpon>
     </Compile>
@@ -57,30 +67,6 @@
     </Compile>
     <Compile Include="ChuNha.Designer.cs">
       <DependentUpon>ChuNha.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CapNhapNV-CEO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CapNhapNV-CEO.designer.cs">
-      <DependentUpon>CapNhapNV-CEO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ThemXoaChiNhanh-CEO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ThemXoaChiNhanh-CEO.designer.cs">
-      <DependentUpon>ThemXoaChiNhanh-CEO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CapNhapChiNhanh-CEO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CapNhapChiNhanh-CEO.designer.cs">
-      <DependentUpon>CapNhapChiNhanh-CEO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TimNV-CEO.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TimNV-CEO.designer.cs">
-      <DependentUpon>TimNV-CEO.cs</DependentUpon>
     </Compile>
     <Compile Include="NguoiThue.cs">
       <SubType>Form</SubType>
@@ -102,11 +88,17 @@
     <Compile Include="QuanLyChiNhanh.Designer.cs">
       <DependentUpon>QuanLyChiNhanh.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThemXoa-CEO.cs">
+    <Compile Include="ThemXoaCN-CEO.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ThemXoa-CEO.designer.cs">
-      <DependentUpon>ThemXoa-CEO.cs</DependentUpon>
+    <Compile Include="ThemXoaCN-CEO.designer.cs">
+      <DependentUpon>ThemXoaCN-CEO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThemXoaNV-CEO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemXoaNV-CEO.designer.cs">
+      <DependentUpon>ThemXoaNV-CEO.cs</DependentUpon>
     </Compile>
     <Compile Include="TimChiNhanh-CEO.cs">
       <SubType>Form</SubType>
@@ -126,20 +118,18 @@
     <Compile Include="TimNT-CEO.designer.cs">
       <DependentUpon>TimNT-CEO.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CEO.resx">
-      <DependentUpon>CEO.cs</DependentUpon>
+    <Compile Include="TimNV-CEO.cs" />
+    <Compile Include="TimNV-CEO.designer.cs">
+      <DependentUpon>TimNV-CEO.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CapNhapCN-CEO.resx">
+      <DependentUpon>CapNhapCN-CEO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapNhapNV-CEO.resx">
       <DependentUpon>CapNhapNV-CEO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ThemXoaChiNhanh-CEO.resx">
-      <DependentUpon>ThemXoaChiNhanh-CEO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CapNhapChiNhanh-CEO.resx">
-      <DependentUpon>CapNhapChiNhanh-CEO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TimNV-CEO.resx">
-      <DependentUpon>TimNV-CEO.cs</DependentUpon>
+    <EmbeddedResource Include="CEO.resx">
+      <DependentUpon>CEO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -156,8 +146,11 @@
     <EmbeddedResource Include="QuanLyChiNhanh.resx">
       <DependentUpon>QuanLyChiNhanh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ThemXoa-CEO.resx">
-      <DependentUpon>ThemXoa-CEO.cs</DependentUpon>
+    <EmbeddedResource Include="ThemXoaCN-CEO.resx">
+      <DependentUpon>ThemXoaCN-CEO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThemXoaNV-CEO.resx">
+      <DependentUpon>ThemXoaNV-CEO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TimChiNhanh-CEO.resx">
       <DependentUpon>TimChiNhanh-CEO.cs</DependentUpon>
@@ -167,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TimNT-CEO.resx">
       <DependentUpon>TimNT-CEO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimNV-CEO.resx">
+      <DependentUpon>TimNV-CEO.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

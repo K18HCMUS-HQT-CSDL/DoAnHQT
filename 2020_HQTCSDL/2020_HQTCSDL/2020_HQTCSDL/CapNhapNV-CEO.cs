@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace _2020_HQTCSDL
 {
-    public partial class CapNhapNV : Form
+    public partial class Form5 : Form
     {
         private string myvalMaNV;
         public string MyvalMaNV
@@ -30,7 +30,7 @@ namespace _2020_HQTCSDL
             get { return myvalcn; }
             set { myvalcn = value; }
         }
-        public CapNhapNV()
+        public Form5()
         {
             InitializeComponent();
         }

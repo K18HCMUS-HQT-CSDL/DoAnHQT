@@ -1,6 +1,6 @@
 ﻿namespace _2020_HQTCSDL
 {
-    partial class CapNhapNV
+    partial class Form5
     {
         /// <summary>
         /// Required designer variable.

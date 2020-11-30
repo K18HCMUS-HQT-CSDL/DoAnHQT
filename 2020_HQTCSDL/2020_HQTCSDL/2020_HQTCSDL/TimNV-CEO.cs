@@ -10,11 +10,28 @@ using System.Windows.Forms;
 
 namespace _2020_HQTCSDL
 {
-    public partial class TimNV : Form
+    public partial class Form9 : Form
     {
-        public TimNV()
+        private string myval;
+        public string Myval
+        {
+            get { return myval; }
+            set { myval = value; }
+        }
+        public Form9()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Myval = textBox1.Text;
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

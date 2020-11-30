@@ -71,3 +71,55 @@ as
 begin
 delete from NhanVien where MaNV=@manv
 end
+go
+
+
+create proc ThemCN
+@mcn as char(8),
+@td as nvarchar(20),
+@tq as nvarchar(20),
+@tkv as nvarchar(20),
+@ttp as nvarchar(20),
+@sdt as char(10),
+@fax as varchar(10),
+@manv as char(8)
+as
+begin
+insert into ChiNhanh
+values(@mcn,@td,@tq,@tkv,@ttp,@sdt,@fax,@manv)
+end
+go
+
+create proc XoaCN
+@mcn as char(8)
+as
+begin
+delete from ChiNhanh where MaCN=@mcn
+end
+go
+
+create proc CapNhapCN
+@mcn as char(8),
+@td as nvarchar(20),
+@tq as nvarchar(20),
+@tkv as nvarchar(20),
+@ttp as nvarchar(20),
+@sdt as char(10),
+@fax as varchar(10),
+@manv as char(8)
+as
+begin
+if(exists(select * from ChiNhanh where MaCN=@mcn))
+begin
+update ChiNhanh
+set TenDuong=@td, TenKhuVuc=@tkv, TenQuan=@tq, TenTP=@ttp, SDT=@sdt,FAX=@fax,MaNV=@manv
+where MaCN=@mcn
+end
+end
+go
+
+
+grant exec on ThemCN to CEO
+grant exec on XoaCN to CEO
+grant exec on CapNhapCN to CEO
+go
