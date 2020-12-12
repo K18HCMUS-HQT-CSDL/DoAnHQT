@@ -34,6 +34,11 @@ CHECK (GioiTinh in (-1,0,1)) -- 0: Nam ; 1: Nu ; -1: Khac
 GO
 
 ALTER TABLE NhanVien
+ADD CONSTRAINT Range_NhanVien_Luong
+CHECK (Luong between 2000000 and 50000000)
+GO
+
+ALTER TABLE NhanVien
 ADD CONSTRAINT Cons_TuoiHon18
 CHECK (datediff(year, NgaySinh, getdate()) > 18)  
 GO
@@ -98,123 +103,123 @@ begin
 end
 go
 
-
--- Trigger truoc khi them mot lich su xem se kiem tra
--- Nội dung: Ngày xem phải trong khoảng ngày đăng và ngày hết hạn của căn nhà (thuê/bán)
-create trigger TR_LichSuXem_BF_INS
-on LichSuXem
-Instead of Insert
-as
-begin
-	declare c cursor for select MaNha, NgayXem from inserted 
-	declare @NgayXem datetime
-	declare @MaNha char(8)
-	open c
-	fetch next from c into @MaNha, @NgayXem
-	while (@@FETCH_STATUS=0)
-	begin
-		if (0!=(select count(*) from NhaThue where MaNha=@MaNha and @NgayXem between NgayDang and NgayHetHan) 
-			or 0!=(select count(*) from NhaBan where MaNha=@MaNha and @NgayXem between NgayDang and NgayHetHan))
+--drop trigger TR_HopDong_BF_INS
+--go
+---- Trigger truoc khi them mot lich su xem se kiem tra
+---- Nội dung: Ngày xem phải trong khoảng ngày đăng và ngày hết hạn của căn nhà (thuê/bán)
+--create trigger TR_LichSuXem_BF_INS
+--on LichSuXem
+--Instead of Insert
+--as
+--begin
+--	declare c cursor for select MaNha, NgayXem from inserted 
+--	declare @NgayXem datetime
+--	declare @MaNha char(8)
+--	open c
+--	fetch next from c into @MaNha, @NgayXem
+--	while (@@FETCH_STATUS=0)
+--	begin
+--		if (0!=(select count(*) from NhaThue where MaNha=@MaNha and @NgayXem between NgayDang and NgayHetHan) 
+--			or 0!=(select count(*) from NhaBan where MaNha=@MaNha and @NgayXem between NgayDang and NgayHetHan))
 		
-			insert into LichSuXem
-			select* 
-			from inserted where MaNha=@MaNha
+--			insert into LichSuXem
+--			select* 
+--			from inserted where MaNha=@MaNha
 		
-		else print 'Lich su xem khong hop le!'
-		fetch next from c into @MaNha, @NgayXem
-	end
-	close c
-	deallocate c
-end
-go
+--		else print 'Lich su xem khong hop le!'
+--		fetch next from c into @MaNha, @NgayXem
+--	end
+--	close c
+--	deallocate c
+--end
+--go
 
 
--- Trigger truoc khi chen hop dong se kiem tra
---1. khach hang da xem qua can nha hay chua 
---2. Tinh trang can nha co onsale hay k va xac dinh loai hop dong
-create trigger TR_HopDong_BF_INS
-on HopDong
-Instead of Insert
-as
-begin
-	declare c cursor for select MaNT, MaNha from inserted 
-	declare @MaNT char(8)
-	declare @MaNha char(8)
-	open c
-	fetch next from c into @MaNT, @MaNha
-	while (@@FETCH_STATUS=0)
-	begin
-		declare @hadSeen tinyint
-		set @hadSeen = (select count(*) from LichSuXem where MaNT = @MaNT and MaNha = @MaNha)
-		if @hadSeen != 0 and ((select TinhTrangThue from NhaThue where MaNha=@MaNha)=0 or (select TinhTrangBan from NhaBan where MaNha=@MaNha)=0)
+---- Trigger truoc khi chen hop dong se kiem tra
+----1. khach hang da xem qua can nha hay chua 
+----2. Tinh trang can nha co onsale hay k va xac dinh loai hop dong
+--create trigger TR_HopDong_BF_INS
+--on HopDong
+--Instead of Insert
+--as
+--begin
+--	declare c cursor for select MaNT, MaNha from inserted 
+--	declare @MaNT char(8)
+--	declare @MaNha char(8)
+--	open c
+--	fetch next from c into @MaNT, @MaNha
+--	while (@@FETCH_STATUS=0)
+--	begin
+--		declare @hadSeen tinyint
+--		set @hadSeen = (select count(*) from LichSuXem where MaNT = @MaNT and MaNha = @MaNha)
+--		if @hadSeen != 0 
 		
-			insert into HopDong(MaHD,MaNT,MaNha,LoaiHD,ThoiGian) 
-			select MaHD,MaNT,MaNha, LoaiHD=(Select LoaiGiaoDich from Nha where MaNha=@MaNha), ThoiGian 
-			from inserted where inserted.MaNT = @MaNT and MaNha=@MaNha
+--			insert into HopDong(MaHD,MaNT,MaNha,LoaiHD,ThoiGian) 
+--			select MaHD,MaNT,MaNha, LoaiHD=(Select LoaiGiaoDich from Nha where MaNha=@MaNha), ThoiGian 
+--			from inserted where inserted.MaNT = @MaNT and MaNha=@MaNha
 		
-		else print 'Khong the tao hop dong nay!'
-		fetch next from c into @MaNT, @MaNha
-	end
-	close c
-	deallocate c
-end
-go
+--		else print 'Khong the tao hop dong nay!'
+--		fetch next from c into @MaNT, @MaNha
+--	end
+--	close c
+--	deallocate c
+--end
+--go
 
 
-------------------------------- TRIGGER CAP NHAT
+--------------------------------- TRIGGER CAP NHAT
 
 
--- Trigger cap nhat So luot xem tren cac bang thue va ban sau khi them mot lich su xem
-create trigger TR_LichSuXem_AF_INS on LichSuXem
-after insert
-as
+---- Trigger cap nhat So luot xem tren cac bang thue va ban sau khi them mot lich su xem
+--create trigger TR_LichSuXem_AF_INS on LichSuXem
+--after insert
+--as
  
-declare @manha char(8)
-declare @mant char(8)
-declare @ngayxem datetime
-select @manha= inserted.MaNha from inserted
-select @mant= inserted.MaNT from inserted
-select @ngayxem= inserted.NgayXem from inserted
-if(exists(select * from NhaBan where @manha=MaNha))
-begin
-update NhaBan
-set SoLuotXem=SoLuotXem+1 where @manha=MaNha
-end
-else if(exists(select * from NhaThue where @manha=MaNha))
-begin
-update NhaThue
-set SoLuotXem=SoLuotXem+1 where @manha=MaNha
-end
-go
+--declare @manha char(8)
+--declare @mant char(8)
+--declare @ngayxem datetime
+--select @manha= inserted.MaNha from inserted
+--select @mant= inserted.MaNT from inserted
+--select @ngayxem= inserted.NgayXem from inserted
+--if(exists(select * from NhaBan where @manha=MaNha))
+--begin
+--update NhaBan
+--set SoLuotXem=SoLuotXem+1 where @manha=MaNha
+--end
+--else if(exists(select * from NhaThue where @manha=MaNha))
+--begin
+--update NhaThue
+--set SoLuotXem=SoLuotXem+1 where @manha=MaNha
+--end
 
+--go
+----Trigger cap nhat tinh trang nha sau khi them 1 dong vao hop dong
+--create trigger TR_HopDong_AF_INS on HopDong
+--after insert
+--as
+--set nocount on;
+--declare @mant char(8)
+--declare @manha char(8)
+--declare @ThoiGian datetime
+--select @mant= inserted.MaNT from inserted
+--select @manha= inserted.MaNha from inserted
+--select @ThoiGian= inserted.ThoiGian from inserted
+--if(exists(Select * from NhaBan where MaNha=@manha))
 
---Trigger cap nhat tinh trang nha sau khi them 1 dong vao hop dong
-create trigger TR_HopDong_AF_INS on HopDong
-after insert
-as
-set nocount on;
-declare @mant char(8)
-declare @manha char(8)
-declare @ThoiGian datetime
-select @mant= inserted.MaNT from inserted
-select @manha= inserted.MaNha from inserted
-select @ThoiGian= inserted.ThoiGian from inserted
-if(exists(Select * from NhaBan where MaNha=@manha))
+--begin
+--update NhaBan set TinhTrangBan=1 where MaNha=@manha
+--update NhaBan set NgayHetHan=@ThoiGian where MaNha=@manha
+--end
 
-begin
-update NhaBan set TinhTrangBan=1 where MaNha=@manha
-update NhaBan set NgayHetHan=@ThoiGian where MaNha=@manha
-end
+--else if(exists(select * from NhaThue where MaNha=@manha))
+--begin
 
-else if(exists(select * from NhaThue where MaNha=@manha))
-begin
+--update NhaThue set SoLuongPhong = SoLuongPhong - 1 where MaNha=@manha
+--update NhaThue set TinhTrangThue=1 where MaNha=@manha and SoLuongPhong=0
+--update NhaThue set NgayHetHan=@ThoiGian where MaNha=@manha and SoLuongPhong=0
 
-update NhaThue set SoLuongPhong = SoLuongPhong - 1 where MaNha=@manha
-update NhaThue set TinhTrangThue=1 where MaNha=@manha and SoLuongPhong=0
-update NhaThue set NgayHetHan=@ThoiGian where MaNha=@manha and SoLuongPhong=0
-
-end
-go
+--end
+--go
 
 --Trigger xoa nha thue
 create trigger TR_NhaThue_BF_DL 
