@@ -11,8 +11,15 @@ using System.Data.SqlClient;
 
 namespace _2020_HQTCSDL
 {
+    public static class Account
+    {
+        public static string username;
+        public static string password;
+        public static string connectString;
+    }
     public partial class Login : Form
     {
+        
         public Login()
         {
             InitializeComponent();
@@ -20,14 +27,16 @@ namespace _2020_HQTCSDL
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string username = usernameTextBox.Text;
-            string password = passwordTextBox.Text;
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            Account.username = usernameTextBox.Text;
+            Account.password = passwordTextBox.Text;
+            if (string.IsNullOrWhiteSpace(Account.username) || string.IsNullOrWhiteSpace(Account.password))
             {
                 MessageBox.Show("Please provide Username and Password");
                 return;
             }
-            SqlConnection con = new SqlConnection(@"Data Source=LAPTOP-B644G9B6\SQLEXPRESS;Database=HQT_CSDL;Persist Security Info=True;User ID=" + username+";Password="+password);
+            Account.connectString = @"Data Source=ICEBEAR-PC\YENNGOCC;Database=temp;Persist Security Info=True;User ID=" + Account.username + ";Password=" + Account.password;
+            SqlConnection con = new SqlConnection(Account.connectString);
+            
             bool checkLog = true;
             try
             {
@@ -45,7 +54,7 @@ namespace _2020_HQTCSDL
                 cmd.CommandText = "login_role";
                 cmd.CommandType = CommandType.StoredProcedure;             
                 
-                cmd.Parameters.Add("@username", SqlDbType.Char,20).Value = username;
+                cmd.Parameters.Add("@username", SqlDbType.Char,20).Value = Account.username;
                 
                 SqlParameter returnParameter = cmd.Parameters.Add("@role", SqlDbType.VarChar,20);
                 returnParameter.Direction = ParameterDirection.Output;
@@ -64,9 +73,9 @@ namespace _2020_HQTCSDL
                             this.Hide();
                             break;
                         }
-                    case "QuanLyChiNhanh":
+                    case "NhanVienQuanLy":
                         {
-                            QuanLyChiNhanh fr = new QuanLyChiNhanh();
+                            NhanVienQuanLy fr = new NhanVienQuanLy();
                             fr.Show();
                             this.Hide();
                             break;
@@ -80,15 +89,15 @@ namespace _2020_HQTCSDL
                         }
                     case "ChuNha":
                         {
-                            ChuNha fr = new ChuNha();
-                            fr.Show();
+                            //ChuNha fr = new ChuNha();
+                            //fr.Show();
                             this.Hide();
                             break;
                         }
                     case "NguoiThue":
                         {
-                            NguoiThue fr = new NguoiThue(username);
-                            fr.Show();
+                            //NguoiThue fr = new NguoiThue(username);
+                            //fr.Show();
                             this.Hide();
                             break;
                         }
