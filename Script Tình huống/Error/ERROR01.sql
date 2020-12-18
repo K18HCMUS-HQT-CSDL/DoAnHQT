@@ -1,5 +1,6 @@
 --TINH HUONG 01:
 create OR alter proc sp_them_HDNhaBan
+@maNV char(8),
 @maHD char(8),
 @maNha char(8),
 @maNT char(8)
@@ -10,10 +11,10 @@ BEGIN TRAN sp_them_HDNhaBan
 update NhaBan set TinhTrangBan = 0 where MaNha=@maNha
 insert into HopDong(MaHD,LoaiHD,ThoiGian,MaNT,MaNha) values (@maHD,0,GETDATE(),@maNT,@maNha)
 waitfor delay '00:00:07'
-if not exists(select * from NhaBan where MaNha=@maNha) or not exists(select * from NguoiThue where MaNT=@maNT)
+if not exists(select * from NhaBan where MaNha=@maNha) or not exists(select * from NguoiThue where MaNT=@maNT) or not exists(select * from Nha where MaNha=@maNha and MaNV=@maNV)
 begin
 	
-	RAISERROR('Them hop dong khong thanh cong',1,1)
+	RAISERROR('Them hop dong khong thanh cong',16,1)
 	ROLLBACK TRAN sp_them_HDNhaBan
 end
 else
@@ -24,7 +25,7 @@ waitfor delay '00:00:07'
 	IF @@TRANCOUNT > 0
        ROLLBACK TRAN
 	   
-    RAISERROR ('Them hop dong khong thanh cong',1,1);
+    RAISERROR ('Them hop dong khong thanh cong',16,1);
 end catch
 end
 GO
@@ -38,7 +39,7 @@ commit tran
 end
 GO
 --TEST
-exec sp_them_HDNhaBan 'HD000006', 'NHA00006', 'NT0006'
+exec sp_them_HDNhaBan 'NV000006','HD000006', 'NHA00006', 'NT0006'
 exec sp_xem_NhaBan
 
 SELECT * FROM HopDong

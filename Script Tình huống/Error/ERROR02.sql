@@ -20,7 +20,7 @@ update NhanVien set Luong = @setluong where MaNV=@maNV
 if not exists(select * from NhanVien where MaNV=@maNV and MaCN=@maCN) 
 begin
 	
-	RAISERROR('Thong tin khong hop le',1,1)
+	RAISERROR('Thong tin khong hop le',16,1)
 	ROLLBACK TRAN sp_capnhat_Luong_nhanvien
 end
 else
@@ -49,7 +49,7 @@ waitfor delay '00:00:07'
 if not exists(select * from NhanVien where MaCN=@maCN) 
 begin
 	
-	RAISERROR('Ma Chi nhanh khong hop le',1,1)
+	RAISERROR('Ma Chi nhanh khong hop le',16,1)
 	ROLLBACK TRAN sp_tang_luong_theochinhanh
 end
 else
