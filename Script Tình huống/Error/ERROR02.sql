@@ -6,7 +6,7 @@ create OR alter proc sp_tang_Luong_nhanvien
 @Luong money
 as
 begin
-begin tran
+
 set transaction isolation level read committed
 begin try
 BEGIN TRAN sp_capnhat_Luong_nhanvien
@@ -32,7 +32,6 @@ waitfor delay '00:00:07'
        ROLLBACK TRAN sp_capnhat_Luong_nhanvien
 	   
 end catch
-commit tran
 select * from NhanVien where MaCN=@maCN
 end
 GO
@@ -70,4 +69,4 @@ exec sp_tang_Luong_nhanvien 'NV000017', 'CN000005', 5000000
 exec sp_tang_luong_theochinhanh 'CN000005', 1.1
 
 select * from NhanVien where MaCN='CN000005'
- update NhanVien set Luong=20000000 where MaCN='CN000005'
+update NhanVien set Luong=20000000 where MaCN='CN000005'
