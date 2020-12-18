@@ -148,7 +148,7 @@ CREATE TABLE [LichSuXem]
 	[MaNha] char(8) NOT NULL,
 	[MaNT] char(8) NOT NULL,
 	[NgayXem] datetime NOT NULL,
-	[NhanXet] text NOT NULL
+	[NhanXet] nvarchar(100) 
 )
 GO
 
