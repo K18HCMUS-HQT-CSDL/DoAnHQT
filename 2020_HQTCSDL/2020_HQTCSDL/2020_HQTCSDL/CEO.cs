@@ -50,7 +50,6 @@ namespace _2020_HQTCSDL
         private void capnhatLuong_button_Click(object sender, EventArgs e)
         {
             
-            
             if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text))
             {
                 MessageBox.Show("Please provide He so Luong");

@@ -56,6 +56,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="NhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhanVien.Designer.cs">
+      <DependentUpon>NhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="NhanVienQuanLy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NhanVien.resx">
+      <DependentUpon>NhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVienQuanLy.resx">
       <DependentUpon>NhanVienQuanLy.cs</DependentUpon>

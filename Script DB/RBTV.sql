@@ -35,7 +35,7 @@ GO
 
 ALTER TABLE NhanVien
 ADD CONSTRAINT Range_NhanVien_Luong
-CHECK (Luong between 2000000 and 50000000)
+CHECK (Luong between 2000000 and 100000000)
 GO
 
 ALTER TABLE NhanVien

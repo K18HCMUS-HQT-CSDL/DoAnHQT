@@ -32,17 +32,18 @@
             this.CEOGridView = new System.Windows.Forms.DataGridView();
             this.capnhatLuong_button = new System.Windows.Forms.Button();
             this.box_ChiNhanh = new System.Windows.Forms.ComboBox();
+            this.chiNhanhBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tempDataSet = new _2020_HQTCSDL.tempDataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_hsLuong = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textbox_role = new System.Windows.Forms.TextBox();
-            this.tempDataSet = new _2020_HQTCSDL.tempDataSet();
-            this.chiNhanhBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.chiNhanhTableAdapter = new _2020_HQTCSDL.tempDataSetTableAdapters.ChiNhanhTableAdapter();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CEOGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tempDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // CEOGridView
@@ -76,6 +77,16 @@
             this.box_ChiNhanh.TabIndex = 2;
             this.box_ChiNhanh.ValueMember = "MaCN";
             this.box_ChiNhanh.SelectedIndexChanged += new System.EventHandler(this.box_ChiNhanh_SelectedIndexChanged);
+            // 
+            // chiNhanhBindingSource
+            // 
+            this.chiNhanhBindingSource.DataMember = "ChiNhanh";
+            this.chiNhanhBindingSource.DataSource = this.tempDataSet;
+            // 
+            // tempDataSet
+            // 
+            this.tempDataSet.DataSetName = "tempDataSet";
+            this.tempDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -115,30 +126,30 @@
             // 
             // textbox_role
             // 
-            this.textbox_role.Location = new System.Drawing.Point(34, 12);
+            this.textbox_role.Location = new System.Drawing.Point(164, 12);
             this.textbox_role.Name = "textbox_role";
             this.textbox_role.Size = new System.Drawing.Size(100, 26);
             this.textbox_role.TabIndex = 7;
             // 
-            // tempDataSet
-            // 
-            this.tempDataSet.DataSetName = "tempDataSet";
-            this.tempDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // chiNhanhBindingSource
-            // 
-            this.chiNhanhBindingSource.DataMember = "ChiNhanh";
-            this.chiNhanhBindingSource.DataSource = this.tempDataSet;
-            // 
             // chiNhanhTableAdapter
             // 
             this.chiNhanhTableAdapter.ClearBeforeFill = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(111, 20);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Mã đăng nhập";
             // 
             // CEO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 450);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.textbox_role);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox_hsLuong);
@@ -151,8 +162,8 @@
             this.Text = "CEO";
             this.Load += new System.EventHandler(this.CEO_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CEOGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tempDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,5 +182,6 @@
         private tempDataSet tempDataSet;
         private System.Windows.Forms.BindingSource chiNhanhBindingSource;
         private tempDataSetTableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -82,8 +82,8 @@ namespace _2020_HQTCSDL
                         }
                     case "NhanVien":
                         {
-                            //NhanVien fr = new NhanVien();
-                            //fr.Show();
+                            NhanVien fr = new NhanVien();
+                            fr.Show();
                             this.Hide();
                             break;
                         }
