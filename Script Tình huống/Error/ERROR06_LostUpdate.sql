@@ -1,6 +1,8 @@
-﻿use HQT_CSDL
-go
+﻿--ERR06: Lost Update
+--T1 (User = Nhân viên): thực hiện update số phòng sau khi hợp đồng thành công
+--T2 (User = Chủ nhà): thực hiện update số phòng còn lại mới
 
+-------------------------------TRAN 01
 --User: NhanVien
 --Proc: Sau khi thêm 1 hợp đồng liên quan tới thuê phòng, cập nhập lại ngay số phòng hiện có
 create or alter proc CapNhapSauHopDong
@@ -27,6 +29,7 @@ commit tran sp_CapNhapSau
 end
 go
 
+-------------------------------TRAN 02
 --User: ChuNha
 --Proc: Khi có xây thêm phòng hay khách cũ trả phòng, chủ nhà cập nhập lại số phòng
 create or alter proc CapNhapPhong

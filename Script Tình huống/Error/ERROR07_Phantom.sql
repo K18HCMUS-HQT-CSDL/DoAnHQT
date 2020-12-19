@@ -1,6 +1,18 @@
-﻿use HQT_CSDL
-go
-------------------------------------------------------PHANTOM--------------------------------------------------------------------------------------------
+﻿------------------------------------------------------PHANTOM---------------------------------------------------------------------------------------------T1 (User = ngườithue): thực hiện thống kê nhà thuê 
+--T2 (User = chủ nhà): them 1 nha thuê 
+
+------TRAN 01
+CREATE OR ALTER PROC sp_xem_NhaThue2
+AS
+BEGIN
+BEGIN TRAN
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+	WAITFOR DELAY '00:00:20'
+	SELECT * FROM NhaThue
+COMMIT TRAN
+END
+GO
+------TRAN 02
 CREATE OR ALTER PROC sp_them_NhaThue
 @maChuNha char(8),
 @maNha char(8),
@@ -30,16 +42,6 @@ END CATCH
 END
 GO
 
-CREATE OR ALTER PROC sp_xem_NhaThue2
-AS
-BEGIN
-BEGIN TRAN
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-	WAITFOR DELAY '00:00:20'
-	SELECT * FROM NhaThue
-COMMIT TRAN
-END
-GO
 
 --TEST
 INSERT INTO Nha VALUES

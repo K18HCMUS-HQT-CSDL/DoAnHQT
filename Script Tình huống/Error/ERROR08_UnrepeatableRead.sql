@@ -1,6 +1,8 @@
-﻿use HQT_CSDL
-go
--------------------------------------------------------------Unrepeateale read-------------------------------------------------------------------
+﻿-------------------------------------------------------------Unrepeateale read-------------------------------------------------------------------
+--T1 (User = Nhân viên): thực hiện thống kê Người thuê nhà thuộc chi nhánh
+--T2 (User = người thuê): người thuê NT000001 thực hiện update thông tin của mình
+
+------TRAN 01
 create OR alter proc sp_xem_NguoiThue
 @MaCN varchar(8)
 as
@@ -13,6 +15,7 @@ commit tran
 end
 GO
 
+------TRAN 02
 create OR alter proc sp_update_NguoiThue
 @maNT char(8),
 @TenNT nvarchar(20)
