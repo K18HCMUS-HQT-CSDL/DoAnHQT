@@ -1,4 +1,20 @@
-﻿--TINH HUONG 04:
+﻿--TINH HUONG 04:UNREPEATABLE READ
+--T1 (User = NhanVien): Thực hiện xem danh sách NguoiThue
+--T2 (User = NguoiThue): Thực hiện cập nhật thông tin NguoiThue
+
+-------------TRAN 1
+CREATE OR ALTER PROC sp_xem_NguoiThue
+AS
+BEGIN
+BEGIN TRAN
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED
+	SELECT * FROM NguoiThue
+	WAITFOR DELAY '00:00:07'
+	SELECT * FROM NguoiThue
+COMMIT TRAN
+END
+GO
+-------------TRAN 2
 CREATE OR ALTER PROC sp_sua_NguoiThue
 @maNT char(8),
 @tenNT nvarchar(20),
@@ -26,18 +42,6 @@ BEGIN CATCH
 	   
     RAISERROR ('Không ton tai ma nguoi thue nay',1,1);
 END CATCH
-END
-GO
-
-CREATE OR ALTER PROC sp_xem_NguoiThue
-AS
-BEGIN
-BEGIN TRAN
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED
-	SELECT * FROM NguoiThue
-	WAITFOR DELAY '00:00:07'
-	SELECT * FROM NguoiThue
-COMMIT TRAN
 END
 GO
 

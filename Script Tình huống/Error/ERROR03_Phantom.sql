@@ -1,4 +1,7 @@
-﻿--TINH HUONG 03:
+﻿--TINH HUONG 03: PHANTOM
+--T1 (User = NguoiThue): Thực hiện xem danh sách Nhà
+--T2 (User = ChuNha): Thực hiện thêm NhaBan 
+
 CREATE OR ALTER PROC sp_them_NhaBan
 @maChuNha char(8),
 @maNha char(8),
