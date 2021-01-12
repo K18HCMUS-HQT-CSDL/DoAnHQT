@@ -1,4 +1,21 @@
-﻿--TINH HUONG 04:
+﻿--TINH HUONG 04: Unrepeatable Read
+--T1 (User = NhanVien): Thực hiện xem danh NguoiThue
+--T2 (User = NguoiThue): Thực hiện cập nhật thông tin NguoiThue
+
+----------------TRAN 01
+CREATE OR ALTER PROC sp_xem_NguoiThue
+AS
+BEGIN
+BEGIN TRAN
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+	SELECT * FROM NguoiThue
+	WAITFOR DELAY '00:00:07'
+	SELECT * FROM NguoiThue
+COMMIT TRAN
+END
+GO
+
+----------------TRAN 02
 CREATE OR ALTER PROC sp_sua_NguoiThue
 @maNT char(8),
 @tenNT nvarchar(20),
@@ -29,18 +46,7 @@ END CATCH
 END
 GO
 
-CREATE OR ALTER PROC sp_xem_NguoiThue
-AS
-BEGIN
-BEGIN TRAN
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
-	SELECT * FROM NguoiThue
-	WAITFOR DELAY '00:00:07'
-	SELECT * FROM NguoiThue
-COMMIT TRAN
-END
-GO
-
 --TEST
-exec sp_xem_NguoiThue
-exec sp_sua_NguoiThue 'NT000007', N'Phạm Văn Minh', '1 Vo Van Ngan, Thu Duc, Ho Chi Minh', '0839231668', '20000000', 'LOAI02  '
+--exec sp_xem_NguoiThue
+--exec sp_sua_NguoiThue 'NT000007', N'Phạm Văn Minh', '1 Vo Van Ngan, Thu Duc, Ho Chi Minh', '0839231668', '20000000', 'LOAI02  '
+
