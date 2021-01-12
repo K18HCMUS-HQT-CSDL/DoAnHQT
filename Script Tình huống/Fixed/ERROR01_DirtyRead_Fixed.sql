@@ -1,4 +1,8 @@
---TINH HUONG 01:
+--TINH HUONG 01:DIRTY READ_fixed
+--T1 (User = NhanVien): Thực hiện thêm một hợp đồng 
+--T2 (User = NguoiThue): Thực hiện thống kê NhaBan 
+
+-----------------------------TRANS 01
 create OR alter proc sp_them_HDNhaBan_Fixed
 @maNV char(8),
 @maHD char(8),
@@ -29,6 +33,9 @@ waitfor delay '00:00:07'
 end catch
 end
 GO
+
+
+-----------------------------TRANS 02
 create OR alter proc sp_xem_NhaBan_Fixed
 as
 begin
@@ -38,7 +45,8 @@ select * from NhaBan
 commit tran sp_xem_NhaBan_Fixed
 end
 GO
---TEST
+
+-------------------------TEST
 exec sp_them_HDNhaBan_Fixed 'NV000006','HD000006', 'NHA00006', 'NT0006'
 exec sp_xem_NhaBan_Fixed
 

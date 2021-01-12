@@ -6,7 +6,12 @@ using System.Windows.Forms;
 
 namespace _2020_HQTCSDL
 {
-    
+    public static class Account
+    {
+        public static string username;
+        public static string password;
+        public static string connectString;
+    }
     static class Program
     {
         

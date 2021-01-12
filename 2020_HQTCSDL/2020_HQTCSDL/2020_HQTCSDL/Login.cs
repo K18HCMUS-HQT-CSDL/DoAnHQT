@@ -11,12 +11,7 @@ using System.Data.SqlClient;
 
 namespace _2020_HQTCSDL
 {
-    public static class Account
-    {
-        public static string username;
-        public static string password;
-        public static string connectString;
-    }
+   
     public partial class Login : Form
     {
         
@@ -34,7 +29,9 @@ namespace _2020_HQTCSDL
                 MessageBox.Show("Please provide Username and Password");
                 return;
             }
-            Account.connectString = @"Data Source=ICEBEAR-PC\YENNGOCC;Database=temp;Persist Security Info=True;User ID=" + Account.username + ";Password=" + Account.password;
+            string DB_Link = @"ICEBEAR-PC\YENNGOCC";
+            string DB_Name = "temp";
+            Account.connectString = @"Data Source="+DB_Link+";Database="+DB_Name+";Persist Security Info=True;User ID=" + Account.username + ";Password=" + Account.password;
             SqlConnection con = new SqlConnection(Account.connectString);
             
             bool checkLog = true;
