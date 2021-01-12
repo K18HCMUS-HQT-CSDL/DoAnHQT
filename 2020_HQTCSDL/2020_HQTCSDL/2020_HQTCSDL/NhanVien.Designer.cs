@@ -39,12 +39,14 @@
             this.CEOGridView = new System.Windows.Forms.DataGridView();
             this.textBox_MaNT = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CEOGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_MaHD
             // 
-            this.textBox_MaHD.Location = new System.Drawing.Point(125, 98);
+            this.textBox_MaHD.Location = new System.Drawing.Point(125, 136);
             this.textBox_MaHD.Name = "textBox_MaHD";
             this.textBox_MaHD.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaHD.TabIndex = 29;
@@ -77,7 +79,7 @@
             // 
             // textBox_MaNha
             // 
-            this.textBox_MaNha.Location = new System.Drawing.Point(125, 132);
+            this.textBox_MaNha.Location = new System.Drawing.Point(125, 170);
             this.textBox_MaNha.Name = "textBox_MaNha";
             this.textBox_MaNha.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaNha.TabIndex = 23;
@@ -85,7 +87,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 135);
+            this.label2.Location = new System.Drawing.Point(14, 173);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 22;
@@ -94,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 101);
+            this.label1.Location = new System.Drawing.Point(14, 139);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 20);
             this.label1.TabIndex = 21;
@@ -103,7 +105,7 @@
             // 
             // themHD_button
             // 
-            this.themHD_button.Location = new System.Drawing.Point(18, 210);
+            this.themHD_button.Location = new System.Drawing.Point(18, 248);
             this.themHD_button.Name = "themHD_button";
             this.themHD_button.Size = new System.Drawing.Size(230, 38);
             this.themHD_button.TabIndex = 20;
@@ -123,7 +125,7 @@
             // 
             // textBox_MaNT
             // 
-            this.textBox_MaNT.Location = new System.Drawing.Point(125, 167);
+            this.textBox_MaNT.Location = new System.Drawing.Point(125, 205);
             this.textBox_MaNT.Name = "textBox_MaNT";
             this.textBox_MaNT.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaNT.TabIndex = 32;
@@ -131,17 +133,37 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 170);
+            this.label4.Location = new System.Drawing.Point(14, 208);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 20);
             this.label4.TabIndex = 31;
             this.label4.Text = "Mã Người thuê";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 82);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(230, 38);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "Thống kê Nhà_Fix";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(18, 292);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(230, 38);
+            this.button3.TabIndex = 34;
+            this.button3.Text = "Thêm Hợp đồng_Fix";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 450);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_MaNT);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.CEOGridView);
@@ -174,5 +196,7 @@
         private System.Windows.Forms.DataGridView CEOGridView;
         private System.Windows.Forms.TextBox textBox_MaNT;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }

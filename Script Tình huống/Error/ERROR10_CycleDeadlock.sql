@@ -1,6 +1,5 @@
 -- TINH HUONG: ca hai nhan vien deu giao dich nha ban
--- TRAN 1
-
+-------------TRAN 01
 CREATE or ALTER PROC sp_them_HDnhaban_DL
 @maHD CHAR(8),
 @maNT CHAR(8),
@@ -56,7 +55,7 @@ END
 
 GO
 
--- TRAN 2
+--------------------------------- TRAN 02
 CREATE or ALTER PROC sp_them_HDnhaban_DL_2
 @maHD CHAR(8),
 @maNT CHAR(8),

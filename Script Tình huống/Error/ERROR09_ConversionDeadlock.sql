@@ -1,5 +1,5 @@
 ﻿-- TINH HUONG: nhan vien cap nhat nhan xet
--- TRAN 1
+---------------------- TRAN 01
 
 CREATE or ALTER PROC sp_updateLSX
 @maNT CHAR(8),
@@ -50,7 +50,7 @@ SELECT * FROM LichSuXem WHERE MaNha = @maNha and MaNT = @maNT
 END
 GO
 
--- TRAN 2
+------------------TRAN 02
 CREATE or ALTER PROC sp_updateLSX_2
 @maNT CHAR(8),
 @maNha CHAR(8),

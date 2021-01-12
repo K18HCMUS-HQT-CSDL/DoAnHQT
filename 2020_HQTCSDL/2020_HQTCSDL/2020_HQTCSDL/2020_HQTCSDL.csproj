@@ -52,9 +52,21 @@
     <Compile Include="CEO.Designer.cs">
       <DependentUpon>CEO.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChuNha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChuNha.Designer.cs">
+      <DependentUpon>ChuNha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs" />
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NguoiThue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NguoiThue.Designer.cs">
+      <DependentUpon>NguoiThue.cs</DependentUpon>
     </Compile>
     <Compile Include="NhanVien.cs">
       <SubType>Form</SubType>

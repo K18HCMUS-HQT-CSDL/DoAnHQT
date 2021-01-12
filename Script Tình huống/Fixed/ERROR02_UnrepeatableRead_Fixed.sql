@@ -1,12 +1,14 @@
---TINH HUONG 02:
+--TINH HUONG 02: LOST UPDATE
+--T1 (User = NhanVienQuanLy): Thực hiện tăng lương của 1 nhân viên trong chi nhánh lên 5tr
+--T2 (User = CEO): Thực hiện tăng hệ số lương của 1 chi nhánh
 
+------------------------------ TRANS 01
 create or alter proc sp_tang_Luong_nhanvien_Fixed
 @maNV char(8),
 @maCN char(8),
 @Luong money
 as
 begin
-
 
 begin try
 set transaction isolation level repeatable read
@@ -51,6 +53,8 @@ end catch
 select * from NhanVien where MaCN=@maCN
 end
 GO
+
+-------------------------------- TRANS 02
 create OR alter proc sp_tang_luong_theochinhanh_Fixed
 @maCN char(8),
 @hesoLuong float
@@ -93,7 +97,7 @@ select * from NhanVien where MaCN=@maCN
 end
 GO
 
---TEST
+--------------------------- TEST
 exec sp_tang_Luong_nhanvien_Fixed 'NV000017', 'CN000005', 5000000
 exec sp_tang_luong_theochinhanh_Fixed 'CN000005', 1.1
 

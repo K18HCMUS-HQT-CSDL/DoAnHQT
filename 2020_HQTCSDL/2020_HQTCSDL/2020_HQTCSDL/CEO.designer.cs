@@ -41,6 +41,7 @@
             this.textbox_role = new System.Windows.Forms.TextBox();
             this.chiNhanhTableAdapter = new _2020_HQTCSDL.tempDataSetTableAdapters.ChiNhanhTableAdapter();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CEOGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempDataSet)).BeginInit();
@@ -58,11 +59,11 @@
             // 
             // capnhatLuong_button
             // 
-            this.capnhatLuong_button.Location = new System.Drawing.Point(34, 197);
+            this.capnhatLuong_button.Location = new System.Drawing.Point(34, 236);
             this.capnhatLuong_button.Name = "capnhatLuong_button";
             this.capnhatLuong_button.Size = new System.Drawing.Size(230, 38);
             this.capnhatLuong_button.TabIndex = 1;
-            this.capnhatLuong_button.Text = "Cập nhật ";
+            this.capnhatLuong_button.Text = "Cập nhật_Fix ";
             this.capnhatLuong_button.UseVisualStyleBackColor = true;
             this.capnhatLuong_button.Click += new System.EventHandler(this.capnhatLuong_button_Click);
             // 
@@ -71,7 +72,7 @@
             this.box_ChiNhanh.DataSource = this.chiNhanhBindingSource;
             this.box_ChiNhanh.DisplayMember = "MaCN";
             this.box_ChiNhanh.FormattingEnabled = true;
-            this.box_ChiNhanh.Location = new System.Drawing.Point(143, 112);
+            this.box_ChiNhanh.Location = new System.Drawing.Point(143, 151);
             this.box_ChiNhanh.Name = "box_ChiNhanh";
             this.box_ChiNhanh.Size = new System.Drawing.Size(121, 28);
             this.box_ChiNhanh.TabIndex = 2;
@@ -91,7 +92,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 115);
+            this.label1.Location = new System.Drawing.Point(30, 154);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 3;
@@ -101,7 +102,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 156);
+            this.label2.Location = new System.Drawing.Point(30, 195);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 20);
             this.label2.TabIndex = 4;
@@ -109,7 +110,7 @@
             // 
             // textBox_hsLuong
             // 
-            this.textBox_hsLuong.Location = new System.Drawing.Point(143, 153);
+            this.textBox_hsLuong.Location = new System.Drawing.Point(143, 192);
             this.textBox_hsLuong.Name = "textBox_hsLuong";
             this.textBox_hsLuong.Size = new System.Drawing.Size(121, 26);
             this.textBox_hsLuong.TabIndex = 5;
@@ -144,11 +145,21 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Mã đăng nhập";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(34, 96);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(230, 38);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Thống kê Nhân viên_Fix";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // CEO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textbox_role);
             this.Controls.Add(this.button2);
@@ -183,5 +194,6 @@
         private System.Windows.Forms.BindingSource chiNhanhBindingSource;
         private tempDataSetTableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }
