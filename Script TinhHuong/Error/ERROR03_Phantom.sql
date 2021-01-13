@@ -1,5 +1,5 @@
 ﻿--TINH HUONG 03: PHANTOM
---T1 (User = NguoiThue): Thực hiện xem danh sách Nhà
+--T1 (User = NguoiThue): Thực hiện xem danh sách Nhà Bán
 --T2 (User = ChuNha): Thực hiện thêm NhaBan 
 
 CREATE OR ALTER PROC sp_them_NhaBan

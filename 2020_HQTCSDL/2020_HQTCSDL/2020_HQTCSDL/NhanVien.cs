@@ -74,5 +74,15 @@ namespace _2020_HQTCSDL
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_MaNT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

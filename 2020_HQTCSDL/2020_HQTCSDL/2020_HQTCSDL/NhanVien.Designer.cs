@@ -41,12 +41,26 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.CEOGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_MaHD
             // 
-            this.textBox_MaHD.Location = new System.Drawing.Point(125, 136);
+            this.textBox_MaHD.Location = new System.Drawing.Point(127, 204);
             this.textBox_MaHD.Name = "textBox_MaHD";
             this.textBox_MaHD.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaHD.TabIndex = 29;
@@ -79,7 +93,7 @@
             // 
             // textBox_MaNha
             // 
-            this.textBox_MaNha.Location = new System.Drawing.Point(125, 170);
+            this.textBox_MaNha.Location = new System.Drawing.Point(127, 233);
             this.textBox_MaNha.Name = "textBox_MaNha";
             this.textBox_MaNha.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaNha.TabIndex = 23;
@@ -87,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 173);
+            this.label2.Location = new System.Drawing.Point(16, 236);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 22;
@@ -96,7 +110,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 139);
+            this.label1.Location = new System.Drawing.Point(16, 207);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 20);
             this.label1.TabIndex = 21;
@@ -105,7 +119,7 @@
             // 
             // themHD_button
             // 
-            this.themHD_button.Location = new System.Drawing.Point(18, 248);
+            this.themHD_button.Location = new System.Drawing.Point(18, 291);
             this.themHD_button.Name = "themHD_button";
             this.themHD_button.Size = new System.Drawing.Size(230, 38);
             this.themHD_button.TabIndex = 20;
@@ -120,28 +134,30 @@
             this.CEOGridView.Name = "CEOGridView";
             this.CEOGridView.RowHeadersWidth = 62;
             this.CEOGridView.RowTemplate.Height = 28;
-            this.CEOGridView.Size = new System.Drawing.Size(695, 426);
+            this.CEOGridView.Size = new System.Drawing.Size(695, 428);
             this.CEOGridView.TabIndex = 30;
             // 
             // textBox_MaNT
             // 
-            this.textBox_MaNT.Location = new System.Drawing.Point(125, 205);
+            this.textBox_MaNT.Location = new System.Drawing.Point(127, 262);
             this.textBox_MaNT.Name = "textBox_MaNT";
             this.textBox_MaNT.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaNT.TabIndex = 32;
+            this.textBox_MaNT.TextChanged += new System.EventHandler(this.textBox_MaNT_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 208);
+            this.label4.Location = new System.Drawing.Point(16, 265);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 20);
             this.label4.TabIndex = 31;
             this.label4.Text = "Mã Người thuê";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(18, 82);
+            this.button1.Location = new System.Drawing.Point(18, 79);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(230, 38);
             this.button1.TabIndex = 33;
@@ -150,18 +166,151 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(18, 292);
+            this.button3.Location = new System.Drawing.Point(19, 330);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(230, 38);
             this.button3.TabIndex = 34;
             this.button3.Text = "Thêm Hợp đồng_Fix";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(18, 161);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(230, 38);
+            this.button4.TabIndex = 36;
+            this.button4.Text = "Thống kê Người thuê_Fix";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(18, 120);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(230, 38);
+            this.button5.TabIndex = 35;
+            this.button5.Text = "Thống kê Người thuê";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(128, 372);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(121, 26);
+            this.textBox1.TabIndex = 38;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 375);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(105, 20);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Mã Hợp đồng";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(21, 402);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(101, 38);
+            this.button6.TabIndex = 39;
+            this.button6.Text = "Cập nhật";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(127, 402);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(122, 38);
+            this.button7.TabIndex = 40;
+            this.button7.Text = "Cập nhật_Fix";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(128, 474);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(121, 26);
+            this.textBox2.TabIndex = 44;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 477);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 20);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Mã Người thuê";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(128, 445);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(121, 26);
+            this.textBox3.TabIndex = 42;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 448);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 20);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "Mã Nhà";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(855, 448);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(122, 52);
+            this.button8.TabIndex = 46;
+            this.button8.Text = "Cập nhật Nhận xét_Fix";
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(748, 448);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(101, 52);
+            this.button9.TabIndex = 45;
+            this.button9.Text = "Cập nhật Nhận xét";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(281, 448);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 20);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Nhận xét";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(359, 450);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(383, 50);
+            this.richTextBox1.TabIndex = 48;
+            this.richTextBox1.Text = "";
+            // 
             // NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(990, 450);
+            this.ClientSize = new System.Drawing.Size(990, 510);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_MaNT);
@@ -198,5 +347,19 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
