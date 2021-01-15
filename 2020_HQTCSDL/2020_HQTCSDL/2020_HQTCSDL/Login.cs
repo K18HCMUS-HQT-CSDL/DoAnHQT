@@ -93,8 +93,8 @@ namespace _2020_HQTCSDL
                         }
                     case "NguoiThue":
                         {
-                            //NguoiThue fr = new NguoiThue(username);
-                            //fr.Show();
+                            NguoiThue fr = new NguoiThue();
+                            fr.Show();
                             this.Hide();
                             break;
                         }

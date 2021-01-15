@@ -39,11 +39,32 @@ END
 GO
 
 --Proc Update thông tin cá nhân (bao gồm tiêu chí)
-CREATE PROC sp_NT_Update (@MaNT char(8), @TenNT nvarchar(20), @DiaChi nvarchar(50), @SDT char(10), @TieuChi money, @LoaiNhaYeuCau char(8))
+CREATE OR ALTER PROC sp_NT_Update
+@maNT char(8),
+@tenNT nvarchar(20),
+@diaChi nvarchar(50),
+@sdt char(10),
+@tieuChi money,
+@yeuCau char(8)
 AS
 BEGIN
-	UPDATE NguoiThue
-	SET TenNT = @TenNT, DiaChi = @DiaChi, SDT = @SDT, TieuChi = @TieuChi, YeuCau = @LoaiNhaYeuCau
-	WHERE MaNT = @MaNT
+BEGIN TRY
+BEGIN TRAN sp_sua_NguoiThue
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED
+IF NOT EXISTS(SELECT * FROM NguoiThue WHERE MaNT = @maNT)
+	BEGIN
+	RAISERROR('Khong ton tai ma nguoi thue nay.',1,1)
+	ROLLBACK TRAN sp_sua_NguoiThue
+	END
+ELSE
+UPDATE NguoiThue SET TenNT = @tenNT, DiaChi = @diaChi, SDT = @sdt, TieuChi = @tieuChi, YeuCau = @yeuCau WHERE MaNT = @maNT
+COMMIT TRAN sp_sua_NguoiThue
+END TRY
+BEGIN CATCH
+	IF @@TRANCOUNT > 0
+       ROLLBACK TRAN
+	   
+    RAISERROR ('Cap nhat thong tin khong thanh cong.',1,1);
+END CATCH
 END
 GO
