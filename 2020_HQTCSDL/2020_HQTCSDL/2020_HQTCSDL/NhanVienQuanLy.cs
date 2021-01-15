@@ -69,15 +69,33 @@ namespace _2020_HQTCSDL
         {
             SqlConnection con = new SqlConnection(Account.connectString);
             SqlCommand cmd = con.CreateCommand();
-            
-            cmd.CommandText = "select * from NhanVien where MaCN=@maCN";
-            cmd.Parameters.AddWithValue("@maCN", textBox_CN.Text);
-            
+            cmd.CommandText = "XemNV_uncommited";
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter();
+            cmd.Parameters.Add("@macn", SqlDbType.Char).Value=textBox_CN.Text;
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
             da.Fill(dt);
             CEOGridView.DataSource = dt;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "XemNV_commited";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            cmd.Parameters.Add("@macn", SqlDbType.Char).Value = textBox_CN.Text;
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+        }
+
+        private void textBox_CN_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
