@@ -117,6 +117,7 @@
             this.button2.TabIndex = 39;
             this.button2.Text = "Thống kê Nhà";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox_MaNha
             // 
@@ -151,6 +152,7 @@
             this.themHD_button.TabIndex = 35;
             this.themHD_button.Text = "Thêm Nhà Thuê";
             this.themHD_button.UseVisualStyleBackColor = true;
+            this.themHD_button.Click += new System.EventHandler(this.themHD_button_Click);
             // 
             // textBox1
             // 

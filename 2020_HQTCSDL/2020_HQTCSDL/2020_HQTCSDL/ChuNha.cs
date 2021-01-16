@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace _2020_HQTCSDL
 {
@@ -15,6 +16,17 @@ namespace _2020_HQTCSDL
         public ChuNha()
         {
             InitializeComponent();
+            this.textbox_role.AppendText(Account.username);
+        }
+
+        private void themHD_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

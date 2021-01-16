@@ -89,5 +89,40 @@ namespace _2020_HQTCSDL
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(textBox_MaHD.Text) || string.IsNullOrWhiteSpace(textBox_MaNT.Text) || string.IsNullOrWhiteSpace(textBox_MaNha.Text))
+                {
+                    MessageBox.Show("Please provide information");
+                    return;
+                }
+                SqlConnection con = new SqlConnection(Account.connectString);
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "sp_them_HDNhaBan_Fixed";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                cmd.Parameters.Add("@maNV", SqlDbType.Char).Value = textbox_role.Text;
+                cmd.Parameters.Add("@maHD", SqlDbType.Char).Value = textBox_MaHD.Text;
+                cmd.Parameters.Add("@maNha", SqlDbType.Char).Value = textBox_MaNha.Text;
+                cmd.Parameters.Add("@maNT", SqlDbType.Char).Value = textBox_MaNT.Text;
+                cmd.ExecuteNonQuery();
+                da.Fill(dt);
+                CEOGridView.DataSource = dt;
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
+    
 }

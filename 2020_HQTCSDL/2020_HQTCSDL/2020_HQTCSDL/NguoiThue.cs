@@ -17,7 +17,7 @@ namespace _2020_HQTCSDL
         {
             InitializeComponent();
         }
-
+        
         public DataSet GetTTNguoiThue()
         {
 
@@ -44,7 +44,7 @@ namespace _2020_HQTCSDL
             //SQL Connection
             //Nên có 1 class lưu connection string chuẩn của nhóm khi merge code
             //string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
-            string query = "EXEC sp_xem_NhaBan"; //Câu lệnh truy vấn
+            string query = "EXEC sp_xem_NhaBan"; 
             using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();
@@ -149,18 +149,36 @@ namespace _2020_HQTCSDL
             textBox2.Text = tempData.Tables[0].Rows[0]["YeuCau"].ToString(); //Hiện số điện thoại
         }
 
-        private void button2_Click(object sender, EventArgs e) //Thống kê nhà bán
+        private void butt_thongkeNhaBan_Click(object sender, EventArgs e) //Thống kê nhà bán
         {
-            CEOGridView.DataSource = GetNhaBan().Tables[0];
-            CEOGridView.Columns["MaNha"].DisplayIndex = 0;
-            CEOGridView.Refresh();
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NhaBan_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
         }
 
         private void button1_Click(object sender, EventArgs e) //Thống kê nhà bán fix
         {
-            CEOGridView.DataSource = GetNhaBan().Tables[0];
-            CEOGridView.Columns["MaNha"].DisplayIndex = 0;
-            CEOGridView.Refresh();
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NhaBan_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
         }
 
         private void button5_Click(object sender, EventArgs e) //Thống kê nhà thuê
