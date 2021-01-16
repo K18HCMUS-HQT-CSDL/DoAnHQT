@@ -84,5 +84,10 @@ namespace _2020_HQTCSDL
         {
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

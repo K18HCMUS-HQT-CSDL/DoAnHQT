@@ -20,7 +20,8 @@ namespace _2020_HQTCSDL
 
         public DataSet GetTTNguoiThue()
         {
-            DataSet dataTTNguoiThue = new DataSet();
+
+             DataSet dataTTNguoiThue = new DataSet();
             //SQL Connection
             string query = "EXEC sp_NT_XemTTNguoiThue @MaNT=" + Account.username; //Câu lệnh truy vấn
             using (SqlConnection connection = new SqlConnection(Account.connectString))
@@ -34,6 +35,7 @@ namespace _2020_HQTCSDL
             }
 
             return dataTTNguoiThue;
+            
         }
 
         public DataSet GetNhaBan()
@@ -41,9 +43,9 @@ namespace _2020_HQTCSDL
             DataSet dataNhaBan = new DataSet();
             //SQL Connection
             //Nên có 1 class lưu connection string chuẩn của nhóm khi merge code
-            string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
-            string query = "EXEC sp_NT_XemNhaBan"; //Câu lệnh truy vấn
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
+            string query = "EXEC sp_xem_NhaBan"; //Câu lệnh truy vấn
+            using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();
                 //SqlDataAdapter
@@ -61,9 +63,9 @@ namespace _2020_HQTCSDL
             DataSet dataNhaThue = new DataSet();
             //SQL Connection
             //Nên có 1 class lưu connection string chuẩn của nhóm khi merge code
-            string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
-            string query = "EXEC sp_NT_XemNhaThue"; //Câu lệnh truy vấn
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
+            string query = "EXEC sp_xem_NhaThue"; //Câu lệnh truy vấn
+            using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();
                 //SqlDataAdapter
@@ -183,7 +185,7 @@ namespace _2020_HQTCSDL
             string money = textBox_MaNT.Text;
             string yeuCau = textBox2.Text;
 
-            string query = "EXEC sp_NT_Update @MaNT=" + Account.username + ",@TenNT=" + tenNT + ",@DiaChi=" + diaChi + ",@SDT=" + sdt + ",@TieuChi=" + money + ",@LoaiNhaYeuCau=" + yeuCau; //Câu lệnh truy vấn
+            string query = "EXEC sp_sua_NguoiThue @MaNT=" + Account.username + ",@TenNT=" + tenNT + ",@DiaChi=" + diaChi + ",@SDT=" + sdt + ",@TieuChi=" + money + ",@LoaiNhaYeuCau=" + yeuCau; //Câu lệnh truy vấn
             using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();
