@@ -86,8 +86,8 @@ namespace _2020_HQTCSDL
                         }
                     case "ChuNha":
                         {
-                            //ChuNha fr = new ChuNha();
-                            //fr.Show();
+                            ChuNha fr = new ChuNha();
+                            fr.Show();
                             this.Hide();
                             break;
                         }
