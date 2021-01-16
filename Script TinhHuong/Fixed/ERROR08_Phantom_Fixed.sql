@@ -27,7 +27,7 @@ BEGIN
 BEGIN TRY
 BEGIN TRAN sp_them_NhaThue_fixed
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED
-	INSERT INTO NhaThue(MaNha,SoLuongPhong, GiaThue ,NgayDang, NgayHetHan, SoLuotXem, TinhTrangThue) VALUES (@maNha, @soLuongPhong ,@giaThue, GETDATE(), @ngayHetHan, 0, 1)
+	
 	IF NOT EXISTS(SELECT * FROM Nha WHERE MaNha=@maNha AND MaChuNha = @maChuNha)
 BEGIN
 	
@@ -35,7 +35,8 @@ BEGIN
 	ROLLBACK TRAN sp_them_NhaThue_fixed
 END
 ELSE
-COMMIT TRAN sp_them_NhaThue_fixed
+	INSERT INTO NhaThue(MaNha,SoLuongPhong, GiaThue ,NgayDang, NgayHetHan, SoLuotXem, TinhTrangThue) VALUES (@maNha, @soLuongPhong ,@giaThue, GETDATE(), @ngayHetHan, 0, 1)
+	COMMIT TRAN sp_them_NhaThue_fixed
 END TRY
 BEGIN CATCH
 	IF @@TRANCOUNT > 0

@@ -29,7 +29,7 @@ namespace _2020_HQTCSDL
                 MessageBox.Show("Please provide Username and Password");
                 return;
             }
-            string DB_Link = @"LAPTOP-B644G9B6\SQLEXPRESS";
+            string DB_Link = @"ICEBEAR-PC\YENNGOCC";
             string DB_Name = "HQT_CSDL";
             Account.connectString = @"Data Source="+DB_Link+";Database="+DB_Name+";Persist Security Info=True;User ID=" + Account.username + ";Password=" + Account.password;
             SqlConnection con = new SqlConnection(Account.connectString);
@@ -93,8 +93,8 @@ namespace _2020_HQTCSDL
                         }
                     case "NguoiThue":
                         {
-                            //NguoiThue fr = new NguoiThue(username);
-                            //fr.Show();
+                            NguoiThue fr = new NguoiThue();
+                            fr.Show();
                             this.Hide();
                             break;
                         }

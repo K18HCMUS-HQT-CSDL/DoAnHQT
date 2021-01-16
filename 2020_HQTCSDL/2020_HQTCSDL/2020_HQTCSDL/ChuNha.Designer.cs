@@ -270,25 +270,30 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox_MaNT;
+        private System.Windows.Forms.Button buttonThemNhaThueFix;
+        private System.Windows.Forms.TextBox textBox_GiaThue;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView CEOGridView;
-        private System.Windows.Forms.TextBox textBox_MaHD;
+        private System.Windows.Forms.DataGridView ChuNhaGridView;
+       // private System.Windows.Forms.TextBox textBox_MaNha;
+        private System.Windows.Forms.ComboBox box_MaNha;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textbox_role;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox_MaNha;
+        private System.Windows.Forms.Button button_ThongKeNha;
+        private System.Windows.Forms.TextBox textBox_SLPhong;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button themHD_button;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button_ThemNhaThue;
+        private System.Windows.Forms.TextBox textBox_NgayHH;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button_CapNhatSoPhongFix;
+        //private System.Windows.Forms.TextBox textBox_MaNha2;
+        private System.Windows.Forms.ComboBox box_MaNha2;
+        private System.Windows.Forms.TextBox textBox_SLPhong2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button_CapNhatSoPhong;
+        private tempDataSet tempDataSet;
+        private System.Windows.Forms.BindingSource ChuNhaBindingSource;
+        private tempDataSetTableAdapters.ChiNhanhTableAdapter ChuNhaTableAdapter;
     }
 }

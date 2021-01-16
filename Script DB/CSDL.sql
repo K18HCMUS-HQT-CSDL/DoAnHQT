@@ -6,6 +6,7 @@
 
 /* Drop Foreign Key Constraints */
 
+
 create database HQT_CSDL
 go
 
