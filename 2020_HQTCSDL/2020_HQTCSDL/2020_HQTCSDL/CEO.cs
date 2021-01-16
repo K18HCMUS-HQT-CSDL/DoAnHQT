@@ -71,20 +71,19 @@ namespace _2020_HQTCSDL
                 MessageBox.Show("Please provide He so Luong");
                 return;
             }
-            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlConnection con = new SqlConnection(Account.connectString); // connectString có sẵn những phải đổi link DB ở login.cs
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "sp_tang_luong_theochinhanh";
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;
-            cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text;
-            
+           
+            cmd.CommandText = "sp_tang_luong_theochinhanh"; // tên proc
+            cmd.CommandType = CommandType.StoredProcedure; // cái này là loại cmd thôi
+            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;//add tham biến
+            cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text; 
+           
+            SqlDataAdapter da = new SqlDataAdapter(); // nhận dữ liệu bằng adapter
+            da.SelectCommand = cmd; // nguồm dữ liệu cho adapter
+            DataTable dt = new DataTable(); //add table
             da.Fill(dt);
-            CEOGridView.DataSource = dt;
-
-
+            CEOGridView.DataSource = dt;//binding data
 
         }
 
