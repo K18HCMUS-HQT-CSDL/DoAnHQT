@@ -3,7 +3,7 @@
 --T2 (User = NguoiThue): Thực hiện cập nhật thông tin NguoiThue
 
 ----------------TRAN 01
-CREATE OR ALTER PROC sp_xem_NguoiThue
+CREATE OR ALTER PROC sp_xem_NguoiThue_Fixed
 AS
 BEGIN
 BEGIN TRAN
@@ -16,7 +16,7 @@ END
 GO
 
 ----------------TRAN 02
-CREATE OR ALTER PROC sp_sua_NguoiThue
+CREATE OR ALTER PROC sp_sua_NguoiThue_Fixed
 @maNT char(8),
 @tenNT nvarchar(20),
 @diaChi nvarchar(50),

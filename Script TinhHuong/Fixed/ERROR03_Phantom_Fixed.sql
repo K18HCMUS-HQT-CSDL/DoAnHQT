@@ -3,7 +3,7 @@
 --T2 (User = ChuNha): Thực hiện thêm NhaBan 
 
 ----------------TRAN 01
-CREATE OR ALTER PROC sp_them_NhaBan
+CREATE OR ALTER PROC sp_them_NhaBan_Fixed
 @maChuNha char(8),
 @maNha char(8),
 @soLuongPhong int,
@@ -35,7 +35,7 @@ END
 GO
 
 ----------------TRAN 02
-CREATE OR ALTER PROC sp_xem_NhaBan
+CREATE OR ALTER PROC sp_xem_NhaBan_er3_Fixed
 AS
 BEGIN
 BEGIN TRAN

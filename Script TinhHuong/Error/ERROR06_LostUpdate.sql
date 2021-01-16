@@ -55,6 +55,9 @@ where MaNha=@manha
 select * from NhaThue where MaNha=@manha
 commit tran sp_CapNhap
 end
+
+
+------- Test
 go
 
 

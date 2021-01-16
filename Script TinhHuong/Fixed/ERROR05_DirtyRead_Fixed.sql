@@ -1,4 +1,4 @@
-﻿------Tình hướng 5: Dirty read
+﻿------Tình huống 5: Dirty read
 --User 1: CEO
 --Tran01: Chuyển Nhân viên sang chi nhánh khác và đồng thời chỉ đạo 1 nhân viên quản lý mới cho nhân viên đó
 --User 2: QLCN
@@ -6,7 +6,7 @@
 use HQT_CSDL
 go
 ----------------------------------Tran01
-create or alter proc ChuyenNV
+create or alter proc ChuyenNV_Fixed
 @manv as char(8),
 @mcn as char(8)
 --@mql as char(8)

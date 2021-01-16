@@ -5,7 +5,7 @@
 -------------------------------TRAN 01
 --User: NhanVien
 --Proc: Sau khi thêm 1 hợp đồng liên quan tới thuê phòng, cập nhập lại ngay số phòng hiện có
-create or alter proc CapNhapSauHopDong
+create or alter proc CapNhapSauHopDong_Fixed
 @mhd as char(8)
 as
 begin
@@ -57,7 +57,7 @@ go
 -------------------------------TRAN 02
 --User: ChuNha
 --Proc: Khi có xây thêm phòng hay khách cũ trả phòng, chủ nhà cập nhập lại số phòng
-create or alter proc CapNhapPhong
+create or alter proc CapNhapPhong_Fixed
 @manha as char(8),
 @spt as int
 as

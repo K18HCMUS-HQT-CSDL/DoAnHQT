@@ -1,8 +1,9 @@
 ﻿------------------------------------------------------PHANTOM---------------------------------------------------------------------------------------------T1 (User = ngườithue): thực hiện thống kê nhà thuê 
+--T1 (User = NguoiThue): xem nha thuê 
 --T2 (User = chủ nhà): them 1 nha thuê 
 
 ------TRAN 01
-CREATE OR ALTER PROC sp_xem_NhaThue2
+CREATE OR ALTER PROC sp_xem_NhaThue
 AS
 BEGIN
 BEGIN TRAN
@@ -47,7 +48,7 @@ GO
 INSERT INTO Nha VALUES
 ('NHA00016', N'8 Nguyễn Đình Chiểu', N'Quận 3', N'Phường 4', N'Hồ Chí Minh', 'NV000001', '0', 'LOAI01', 'HOST0001')
 
-exec sp_xem_NhaThue2 
+exec sp_xem_NhaThue 
 exec sp_them_NhaThue 'HOST0001', 'NHA00016', '6', '2000000000',  '2021-12-21 00:00:00'
 
 SELECT * FROM NhaThue
