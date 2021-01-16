@@ -36,25 +36,17 @@ commit TRAN sp_ChuyenNV_uncommited
 go
 
 ----------------------------------------Tran02
-create or alter proc XemNV_uncommited_Fixed
+create or alter proc XemNV_commited
+@macn AS CHAR(8)
 as
 begin
 SET TRANSACTION ISOLATION LEVEL read COMMITTED
 begin tran
-select * from NhanVien
+select * from dbo.NhanVien where MaCN=@macn
 commit tran
 end
 go
 
-
-
---------------------------TEST
-use HQT_CSDL
-go
-exec ChuyenNV 'NV000008','CN000004'
-go
---exec CapNhapSauHopDong 'HD000001','NHA00001',2
-go
 
 
 

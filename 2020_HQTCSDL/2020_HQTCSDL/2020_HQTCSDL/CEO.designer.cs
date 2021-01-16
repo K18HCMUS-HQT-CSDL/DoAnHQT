@@ -41,6 +41,7 @@
             this.textbox_role = new System.Windows.Forms.TextBox();
             this.chiNhanhTableAdapter = new _2020_HQTCSDL.tempDataSetTableAdapters.ChiNhanhTableAdapter();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -118,9 +119,10 @@
             // 
             // textBox_hsLuong
             // 
-            this.textBox_hsLuong.Location = new System.Drawing.Point(143, 161);
+            this.textBox_hsLuong.Location = new System.Drawing.Point(127, 129);
+            this.textBox_hsLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox_hsLuong.Name = "textBox_hsLuong";
-            this.textBox_hsLuong.Size = new System.Drawing.Size(121, 26);
+            this.textBox_hsLuong.Size = new System.Drawing.Size(108, 22);
             this.textBox_hsLuong.TabIndex = 5;
             // 
             // button2
@@ -155,7 +157,8 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(34, 195);
+            this.button3.Location = new System.Drawing.Point(30, 156);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(230, 38);
             this.button3.TabIndex = 10;
@@ -246,6 +249,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textbox_role);
             this.Controls.Add(this.button2);
@@ -255,6 +259,7 @@
             this.Controls.Add(this.box_ChiNhanh);
             this.Controls.Add(this.capnhatLuong_button);
             this.Controls.Add(this.CEOGridView);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CEO";
             this.Text = "CEO";
             this.Load += new System.EventHandler(this.CEO_Load);
@@ -280,6 +285,7 @@
         private System.Windows.Forms.BindingSource chiNhanhBindingSource;
         private tempDataSetTableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;

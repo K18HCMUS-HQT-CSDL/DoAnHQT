@@ -6,15 +6,15 @@
 --User: NhanVien
 --Proc: Sau khi thêm 1 hợp đồng liên quan tới thuê phòng, cập nhập lại ngay số phòng hiện có
 create or alter proc CapNhapSauHopDong_Fixed
-@mhd as char(8),
-@manha as char(8),
-@sphd as int
+@mhd as char(8)
 as
 begin
 --begin try
 SET TRANSACTION ISOLATION LEVEL repeatable READ  --COMMITTED
 begin tran sp_CapNhapSau
-declare @temp int
+declare @temp INT
+DECLARE @manha CHAR(8)
+SELECT @manha=(SELECT DISTINCT MaNha FROM dbo.HopDong WHERE @mhd=MaHD)
 select @temp=SoLuongPhong from NhaThue with (UPDLOCK) where MaNha=@manha
 if(not exists(select * from HopDong where MaHD=@mhd) or not exists(select* from NhaThue where MaNha=@manha))
 begin
@@ -24,7 +24,7 @@ end
 else
 waitfor delay '00:00:10'
 update NhaThue
-set SoLuongPhong=@temp-@sphd
+set SoLuongPhong=@temp-1
 where MaNha=@manha
 commit tran sp_CapNhapSau
 IF @@TRANCOUNT > 0
@@ -106,9 +106,4 @@ end
 go
 ----------------------------------------------Test
 
-go
---exec XemNV_uncommited
-go
---exec CapNhapPhong 'NHA00001',4
-go
-update NhaThue set SoLuongPhong=4 where MaNha='NHA00001'
+update NhaThue set SoLuongPhong=6 where MaNha='NHA00001'

@@ -85,9 +85,18 @@ namespace _2020_HQTCSDL
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "CapNhapSauHopDong_Error";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@mhd", SqlDbType.Char).Value = textBox1.Text;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -123,6 +132,18 @@ namespace _2020_HQTCSDL
                 MessageBox.Show(ex.Message);
             }
         }
-    }
-    
+	private void button7_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "CapNhapSauHopDong";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@mhd", SqlDbType.Char).Value = textBox1.Text;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+        }
+	}
 }
