@@ -54,6 +54,9 @@ where MaNha=@manha
 select * from NhaThue where MaNha=@manha
 commit tran sp_CapNhap
 end
+
+
+------- Test
 go
 exec CapNhapPhong 'NHA00001',4
 go

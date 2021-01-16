@@ -5,7 +5,7 @@
 
 
 -------------------TRAN 01
-CREATE OR ALTER PROC sp_xem_NhaThue2_fixed
+CREATE OR ALTER PROC sp_xem_NhaThue_fixed
 AS
 BEGIN
 BEGIN TRAN

@@ -17,10 +17,11 @@ namespace _2020_HQTCSDL
         {
             InitializeComponent();
         }
-
+        
         public DataSet GetTTNguoiThue()
         {
-            DataSet dataTTNguoiThue = new DataSet();
+
+             DataSet dataTTNguoiThue = new DataSet();
             //SQL Connection
             string query = "EXEC sp_NT_XemTTNguoiThue @MaNT=" + Account.username; //Câu lệnh truy vấn
             using (SqlConnection connection = new SqlConnection(Account.connectString))
@@ -34,6 +35,7 @@ namespace _2020_HQTCSDL
             }
 
             return dataTTNguoiThue;
+            
         }
 
         public DataSet GetNhaBan()
@@ -41,9 +43,9 @@ namespace _2020_HQTCSDL
             DataSet dataNhaBan = new DataSet();
             //SQL Connection
             //Nên có 1 class lưu connection string chuẩn của nhóm khi merge code
-            string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
-            string query = "EXEC sp_NT_XemNhaBan"; //Câu lệnh truy vấn
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
+            string query = "EXEC sp_xem_NhaBan"; 
+            using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();
                 //SqlDataAdapter
@@ -61,9 +63,9 @@ namespace _2020_HQTCSDL
             DataSet dataNhaThue = new DataSet();
             //SQL Connection
             //Nên có 1 class lưu connection string chuẩn của nhóm khi merge code
-            string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
-            string query = "EXEC sp_NT_XemNhaThue"; //Câu lệnh truy vấn
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            //string connectionString = @"Data Source=DESKTOP-R4GG4RM;Initial Catalog=HQT_CSDL;Integrated Security=True";
+            string query = "EXEC sp_xem_NhaThue"; //Câu lệnh truy vấn
+            using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();
                 //SqlDataAdapter
@@ -147,18 +149,36 @@ namespace _2020_HQTCSDL
             textBox2.Text = tempData.Tables[0].Rows[0]["YeuCau"].ToString(); //Hiện số điện thoại
         }
 
-        private void button2_Click(object sender, EventArgs e) //Thống kê nhà bán
+        private void butt_thongkeNhaBan_Click(object sender, EventArgs e) //Thống kê nhà bán
         {
-            CEOGridView.DataSource = GetNhaBan().Tables[0];
-            CEOGridView.Columns["MaNha"].DisplayIndex = 0;
-            CEOGridView.Refresh();
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NhaBan_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
         }
 
         private void button1_Click(object sender, EventArgs e) //Thống kê nhà bán fix
         {
-            CEOGridView.DataSource = GetNhaBan().Tables[0];
-            CEOGridView.Columns["MaNha"].DisplayIndex = 0;
-            CEOGridView.Refresh();
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NhaBan_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
         }
 
         private void button5_Click(object sender, EventArgs e) //Thống kê nhà thuê
@@ -183,7 +203,7 @@ namespace _2020_HQTCSDL
             string money = textBox_MaNT.Text;
             string yeuCau = textBox2.Text;
 
-            string query = "EXEC sp_NT_Update @MaNT=" + Account.username + ",@TenNT=" + tenNT + ",@DiaChi=" + diaChi + ",@SDT=" + sdt + ",@TieuChi=" + money + ",@LoaiNhaYeuCau=" + yeuCau; //Câu lệnh truy vấn
+            string query = "EXEC sp_sua_NguoiThue @MaNT=" + Account.username + ",@TenNT=" + tenNT + ",@DiaChi=" + diaChi + ",@SDT=" + sdt + ",@TieuChi=" + money + ",@LoaiNhaYeuCau=" + yeuCau; //Câu lệnh truy vấn
             using (SqlConnection connection = new SqlConnection(Account.connectString))
             {
                 connection.Open();

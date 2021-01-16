@@ -172,6 +172,7 @@
             this.button3.TabIndex = 34;
             this.button3.Text = "Thêm Hợp đồng_Fix";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -190,6 +191,7 @@
             this.button5.TabIndex = 35;
             this.button5.Text = "Thống kê Người thuê";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox1
             // 

@@ -79,5 +79,29 @@ namespace _2020_HQTCSDL
             da.Fill(dt);
             CEOGridView.DataSource = dt;
         }
+
+       
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text) || string.IsNullOrWhiteSpace(textBox_MaNV.Text))
+            {
+                MessageBox.Show("Please provide information");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_tang_Luong_nhanvien_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maNV", SqlDbType.Char).Value = textBox_MaNV.Text;
+            cmd.Parameters.Add("@Luong", SqlDbType.Money).Value = textBox_hsLuong.Text;
+            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = textBox_CN.Text;
+
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+        }
     }
 }

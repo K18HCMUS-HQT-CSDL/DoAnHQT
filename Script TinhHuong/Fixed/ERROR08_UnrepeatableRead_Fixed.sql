@@ -3,7 +3,7 @@
 --T2 (User = người thuê): người thuê NT000001 thực hiện update thông tin của mình
 
 -------------------TRAN 01
-create OR alter proc sp_xem_NguoiThue_fixed
+create OR alter proc sp_xem_NguoiThue_er8_fixed
 @MaCN varchar(8)
 as
 begin
@@ -23,7 +23,7 @@ as
 begin
 Begin tran
 begin try
-begin tran sp_update_NguoiThue_fixed
+begin tran sp_update_NguoiThue_er8_fixed
 set transaction isolation level read uncommitted
 if not exists(select * from NguoiThue where MaNT=@maNT) 
 begin

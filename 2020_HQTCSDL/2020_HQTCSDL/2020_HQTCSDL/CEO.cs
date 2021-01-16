@@ -79,7 +79,23 @@ namespace _2020_HQTCSDL
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text))
+            {
+                MessageBox.Show("Please provide He so Luong");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_tang_luong_theochinhanh_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;
+            cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text;
 
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
         }
     }
 }
