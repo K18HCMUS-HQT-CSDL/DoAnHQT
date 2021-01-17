@@ -135,12 +135,13 @@ CREATE OR ALTER PROC sp_them_NhaBan
 @maNha char(8),
 @soLuongPhong int,
 @giaBan money,
+@dieuKien text,
 @ngayHetHan datetime
 AS
 BEGIN
 BEGIN TRY
 BEGIN TRAN sp_them_NhaBan
-	INSERT INTO NhaBan(MaNha,SoLuongPhong,GiaBan,DieuKien,NgayDang, NgayHetHan, SoLuotXem, TinhTrangBan) VALUES (@maNha, @soLuongPhong ,@giaBan, N'Đặt cọc trước 20%', GETDATE(), @ngayHetHan, 0, 1)
+	INSERT INTO NhaBan(MaNha,SoLuongPhong,GiaBan,DieuKien,NgayDang, NgayHetHan, SoLuotXem, TinhTrangBan) VALUES (@maNha, @soLuongPhong ,@giaBan, @dieuKien, GETDATE(), @ngayHetHan, 0, 1)
 	IF NOT EXISTS(SELECT * FROM Nha WHERE MaNha=@maNha AND MaChuNha = @maChuNha)
 BEGIN
 	
@@ -156,7 +157,6 @@ BEGIN CATCH
 	   
     RAISERROR ('Them nha ban khong thanh cong',16,1);
 END CATCH
-SELECT * FROM dbo.NhaBan WHERE MaNha=@maNha
 END
 GO
 
@@ -276,7 +276,6 @@ go
 
 
 -- ERROR06
------------------------------------------
 --ERR06: Lost Update
 --T1 (User = Nhân viên): thực hiện update số phòng sau khi hợp đồng thành công
 --T2 (User = Chủ nhà): thực hiện update số phòng còn lại mới
@@ -284,18 +283,19 @@ go
 -------------------------------TRAN 01
 --User: NhanVien
 --Proc: Sau khi thêm 1 hợp đồng liên quan tới thuê phòng, cập nhập lại ngay số phòng hiện có
-create or alter proc CapNhapSauHopDong
-@mhd as char(8),
-@manha as char(8)
+create or alter proc CapNhapSauHopDong_Error
+@mhd as char(8)
 as
 begin
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 begin tran sp_CapNhapSau
-declare @temp int
+declare @temp INT
+DECLARE @manha CHAR(8)
+SELECT @manha=(SELECT DISTINCT MaNha FROM dbo.HopDong WHERE @mhd=MaHD)
 select @temp=SoLuongPhong from NhaThue where MaNha=@manha
 if(not exists(select * from HopDong where MaHD=@mhd) or not exists(select* from NhaThue where MaNha=@manha))
 begin
-RAISERROR('Chuyen nhan vien khong thanh cong',16,1)
+RAISERROR('Cap nhap phong khong thanh cong',1,1)
 ROLLBACK TRAN sp_CapNhapSau
 end
 else
@@ -305,6 +305,33 @@ set SoLuongPhong=@temp-1
 where MaNha=@manha
 select * from NhaThue where MaNha=@manha
 commit tran sp_CapNhapSau
+end
+go
+
+-------------------------------TRAN 02
+--User: ChuNha
+--Proc: Khi có xây thêm phòng hay khách cũ trả phòng, chủ nhà cập nhập lại số phòng
+create or alter proc CapNhapPhong_Error
+@manha as char(8),
+@spt as int
+as
+begin
+SET TRANSACTION ISOLATION LEVEL READ unCOMMITTED
+begin tran sp_CapNhap
+declare @temp int
+select @temp=SoLuongPhong from NhaThue where MaNha=@manha
+if(not exists(select* from NhaThue where MaNha=@manha))
+begin
+RAISERROR('Chuyen nhan vien khong thanh cong',1,1)
+ROLLBACK TRAN sp_CapNhap
+end
+else
+--waitfor delay '00:00:05'
+update NhaThue
+set SoLuongPhong=@temp+@spt
+where MaNha=@manha
+select * from NhaThue where MaNha=@manha
+commit tran sp_CapNhap
 end
 go
 
@@ -358,13 +385,13 @@ CREATE OR ALTER PROC sp_them_NhaThue
 @maChuNha char(8),
 @maNha char(8),
 @soLuongPhong int,
-@giaThue MONEY
---@ngayHetHan DATETIME
+@giaThue money,
+@ngayHetHan datetime
 AS
 BEGIN
 BEGIN TRY
 BEGIN TRAN sp_them_NhaThue
-	INSERT INTO NhaThue(MaNha,SoLuongPhong, GiaThue ,NgayDang, NgayHetHan, SoLuotXem, TinhTrangThue) VALUES (@maNha, @soLuongPhong ,@giaThue, GETDATE(), GETDATE()+365, 0, 1)
+	INSERT INTO NhaThue(MaNha,SoLuongPhong, GiaThue ,NgayDang, NgayHetHan, SoLuotXem, TinhTrangThue) VALUES (@maNha, @soLuongPhong ,@giaThue, GETDATE(), @ngayHetHan, 0, 1)
 	IF NOT EXISTS(SELECT * FROM Nha WHERE MaNha=@maNha AND MaChuNha = @maChuNha)
 BEGIN
 	
@@ -380,7 +407,6 @@ BEGIN CATCH
 	   
     RAISERROR ('Them nha khong thanh cong',16,1);
 END CATCH
-SELECT * FROM dbo.NhaThue WHERE MaNha=@maNha
 END
 GO
 
@@ -394,11 +420,9 @@ GO
 
 ------TRAN 01
 create OR alter proc sp_xem_NguoiThue_er8
-@Manv varchar(8)
+@MaCN varchar(8)
 as
-BEGIN
-DECLARE @MaCN AS CHAR(8)
-SET @MaCN=(SELECT DISTINCT MaCN FROM dbo.NhanVien WHERE @Manv=MaNV)
+begin
 begin tran
 set transaction isolation level read committed
 WAITFOR DELAY '00:00:20'
@@ -417,6 +441,7 @@ begin tran
 set transaction isolation level read committed
 begin try
 BEGIN TRAN sp_update_NguoiThue
+select MaNT from NguoiThue where MaNT=@maNT
 waitfor delay '00:00:20'
 update NguoiThue set TenNT = @TenNT where MaNT=@maNT
 if not exists(select * from NguoiThue where MaNT=@maNT) 
@@ -434,8 +459,7 @@ waitfor delay '00:00:20'
        ROLLBACK TRAN sp_update_NguoiThue
 	   
 end catch
-commit TRAN
-SELECT * FROM dbo.NguoiThue WHERE MaNT=@maNT
+commit tran
 end
 GO
 

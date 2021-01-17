@@ -297,7 +297,6 @@
         }
 
         #endregion
-
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBox_MaNT;
         private System.Windows.Forms.Label label4;

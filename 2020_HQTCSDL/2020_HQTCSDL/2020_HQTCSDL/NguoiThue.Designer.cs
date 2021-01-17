@@ -89,7 +89,7 @@
             this.textbox_role.Size = new System.Drawing.Size(89, 22);
             this.textbox_role.TabIndex = 40;
             // 
-            // button2
+            // butt_thongkeNhaBan
             // 
             this.button2.Location = new System.Drawing.Point(12, 29);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -129,6 +129,7 @@
             this.textBox_MaNT.Name = "textBox_MaNT";
             this.textBox_MaNT.Size = new System.Drawing.Size(108, 22);
             this.textBox_MaNT.TabIndex = 55;
+            this.textBox_MaNT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_NumberOnly);
             // 
             // label4
             // 
@@ -154,6 +155,7 @@
             this.textBox_MaNha.Name = "textBox_MaNha";
             this.textBox_MaNha.Size = new System.Drawing.Size(108, 22);
             this.textBox_MaNha.TabIndex = 52;
+            this.textBox_MaNha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.text_NumberOnly);
             // 
             // label2
             // 
@@ -256,6 +258,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "NguoiThue";
             this.Text = "NguoiThue";
+            this.Load += new System.EventHandler(this.NguoiThue_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CEOGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

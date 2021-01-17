@@ -169,6 +169,7 @@
             this.button3.TabIndex = 21;
             this.button3.Text = "Cập nhật Lương_Fix";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // NhanVienQuanLy
             // 
@@ -212,5 +213,7 @@
         private System.Windows.Forms.TextBox textBox_MaNV;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+
+        
     }
 }

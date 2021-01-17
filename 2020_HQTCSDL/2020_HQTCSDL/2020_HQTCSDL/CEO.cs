@@ -74,7 +74,7 @@ namespace _2020_HQTCSDL
             SqlConnection con = new SqlConnection(Account.connectString); // connectString có sẵn những phải đổi link DB ở login.cs
             SqlCommand cmd = con.CreateCommand();
            
-            cmd.CommandText = "sp_tang_luong_theochinhanh_Fixed"; // tên proc
+            cmd.CommandText = "sp_tang_luong_theochinhanh"; // tên proc
             cmd.CommandType = CommandType.StoredProcedure; // cái này là loại cmd thôi
             cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;//add tham biến
             cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text; 
@@ -94,9 +94,46 @@ namespace _2020_HQTCSDL
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-        }
+            if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text))
+            {
+                MessageBox.Show("Please provide He so Luong");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_tang_luong_theochinhanh_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;
+            cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text;
 
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+
+        }
+	private void button3_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text))
+            {
+                MessageBox.Show("Please provide He so Luong");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString); // connectString có sẵn những phải đổi link DB ở login.cs
+            SqlCommand cmd = con.CreateCommand();
+
+            cmd.CommandText = "sp_tang_luong_theochinhanh"; // tên proc
+            cmd.CommandType = CommandType.StoredProcedure; // cái này là loại cmd thôi
+            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;//add tham biến
+            cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(); // nhận dữ liệu bằng adapter
+            da.SelectCommand = cmd; // nguồm dữ liệu cho adapter
+            DataTable dt = new DataTable(); //add table
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;//binding data
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Account.connectString);
@@ -126,28 +163,6 @@ namespace _2020_HQTCSDL
             cmd.Parameters.Add("@mcn", SqlDbType.Char).Value = comboBox1.SelectedItem;
             da.Fill(dt);
             CEOGridView.DataSource = dt;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text))
-            {
-                MessageBox.Show("Please provide He so Luong");
-                return;
-            }
-            SqlConnection con = new SqlConnection(Account.connectString); // connectString có sẵn những phải đổi link DB ở login.cs
-            SqlCommand cmd = con.CreateCommand();
-
-            cmd.CommandText = "sp_tang_luong_theochinhanh"; // tên proc
-            cmd.CommandType = CommandType.StoredProcedure; // cái này là loại cmd thôi
-            cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;//add tham biến
-            cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text;
-
-            SqlDataAdapter da = new SqlDataAdapter(); // nhận dữ liệu bằng adapter
-            da.SelectCommand = cmd; // nguồm dữ liệu cho adapter
-            DataTable dt = new DataTable(); //add table
-            da.Fill(dt);
-            CEOGridView.DataSource = dt;//binding data
         }
     }
 }

@@ -29,7 +29,7 @@ namespace _2020_HQTCSDL
                 MessageBox.Show("Please provide Username and Password");
                 return;
             }
-            string DB_Link = @"LAPTOP-B644G9B6\SQLEXPRESS"; // link server chứa DB
+            string DB_Link = @"ICEBEAR-PC\YENNGOCC"; // link server chứa DB
             string DB_Name = "HQT_CSDL"; // tên DB
             Account.connectString = @"Data Source="+DB_Link+";Database="+DB_Name+";Persist Security Info=True;User ID=" + Account.username + ";Password=" + Account.password;
             SqlConnection con = new SqlConnection(Account.connectString);
