@@ -120,7 +120,7 @@
             this.textBox_CN.Name = "textBox_CN";
             this.textBox_CN.Size = new System.Drawing.Size(89, 22);
             this.textBox_CN.TabIndex = 16;
-            this.textBox_CN.TextChanged += new System.EventHandler(this.textBox_CN_TextChanged);
+            //this.textBox_CN.TextChanged += new System.EventHandler(this.textBox_CN_TextChanged);
             // 
             // label3
             // 
@@ -213,5 +213,7 @@
         private System.Windows.Forms.TextBox textBox_MaNV;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+
+        
     }
 }
