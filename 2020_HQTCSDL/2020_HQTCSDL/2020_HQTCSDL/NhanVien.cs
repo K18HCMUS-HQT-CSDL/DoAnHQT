@@ -145,5 +145,37 @@ namespace _2020_HQTCSDL
             da.Fill(dt);
             CEOGridView.DataSource = dt;
         }
-	}
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NguoiThue";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NguoiThue_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
+        }
+    }
 }

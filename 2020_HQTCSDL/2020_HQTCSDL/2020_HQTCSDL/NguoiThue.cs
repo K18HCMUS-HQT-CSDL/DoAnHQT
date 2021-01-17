@@ -148,13 +148,13 @@ namespace _2020_HQTCSDL
             textBox_MaNT.Text = tempData.Tables[0].Rows[0]["TieuChi"].ToString(); //Hiện số điện thoại
             textBox2.Text = tempData.Tables[0].Rows[0]["YeuCau"].ToString(); //Hiện số điện thoại
         }
-
+        
         private void butt_thongkeNhaBan_Click(object sender, EventArgs e) //Thống kê nhà bán
         {
             SqlConnection con = new SqlConnection(Account.connectString);
             con.Open();
             SqlCommand cmd = con.CreateCommand();
-            cmd.CommandText = "sp_xem_NhaBan_Fixed";
+            cmd.CommandText = "sp_xem_NhaBan";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter();
@@ -180,23 +180,50 @@ namespace _2020_HQTCSDL
             CEOGridView.DataSource = dt;
             con.Close();
         }
-
+        
         private void button5_Click(object sender, EventArgs e) //Thống kê nhà thuê
         {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NhaThue";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
+            /*
             CEOGridView.DataSource = GetNhaThue().Tables[0];
             CEOGridView.Columns["MaNha"].DisplayIndex = 0;
             CEOGridView.Refresh();
+            */
         }
 
         private void button4_Click(object sender, EventArgs e) //Thống kê nhà thuê fix
         {
-            CEOGridView.DataSource = GetNhaThue().Tables[0];
+            /*CEOGridView.DataSource = GetNhaThue().Tables[0];
             CEOGridView.Columns["MaNha"].DisplayIndex = 0;
-            CEOGridView.Refresh();
+            CEOGridView.Refresh();*/
+            SqlConnection con = new SqlConnection(Account.connectString);
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_xem_NhaThue_fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+            con.Close();
         }
 
         private void button6_Click(object sender, EventArgs e) //Cập nhật thông tin người thuê
         {
+            /*
             string tenNT = textBox_MaHD.Text;
             string diaChi = textBox1.Text;
             string sdt = textBox_MaNha.Text;
@@ -213,7 +240,8 @@ namespace _2020_HQTCSDL
                 connection.Close();
             }
 
-            Close();
+            Close();*/
+            
         }
 
         private void button3_Click(object sender, EventArgs e) //Cập nhật thông tin người thuê fix

@@ -65,12 +65,96 @@ namespace _2020_HQTCSDL
 
         private void themHD_button_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(textBox_MaHD.Text)|| string.IsNullOrWhiteSpace(textBox_MaNha.Text)|| string.IsNullOrWhiteSpace(textBox_MaNT.Text)|| string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Please provide information!");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_them_NhaThue";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maChuNha", SqlDbType.Char).Value = Account.username;
+            cmd.Parameters.Add("@maNha", SqlDbType.Char).Value = textBox_MaHD.Text;
+            cmd.Parameters.Add("@soLuongPhong", SqlDbType.Int).Value = textBox_MaNha.Text;
+            cmd.Parameters.Add("@giaThue", SqlDbType.Money).Value = textBox_MaNT.Text;
+            cmd.Parameters.Add("@ngayHetHan", SqlDbType.DateTime).Value = textBox1.Text;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBox_MaHD.Text) || string.IsNullOrWhiteSpace(textBox_MaNha.Text) || string.IsNullOrWhiteSpace(textBox_MaNT.Text) || string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Please provide information!");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_them_NhaThue_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maChuNha", SqlDbType.Char).Value = Account.username;
+            cmd.Parameters.Add("@maNha", SqlDbType.Char).Value = textBox_MaHD.Text;
+            cmd.Parameters.Add("@soLuongPhong", SqlDbType.Int).Value = textBox_MaNha.Text;
+            cmd.Parameters.Add("@giaThue", SqlDbType.Money).Value = textBox_MaNT.Text;
+            cmd.Parameters.Add("@ngayHetHan", SqlDbType.DateTime).Value = textBox1.Text;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+        }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox4.Text) || string.IsNullOrWhiteSpace(textBox5.Text) || string.IsNullOrWhiteSpace(textBox6.Text) || string.IsNullOrWhiteSpace(textBox8.Text))
+            {
+                MessageBox.Show("Please provide information!");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_them_NhaBan";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maChuNha", SqlDbType.Char).Value = Account.username;
+            cmd.Parameters.Add("@maNha", SqlDbType.Char).Value = textBox4.Text;
+            cmd.Parameters.Add("@soLuongPhong", SqlDbType.Int).Value = textBox5.Text;
+            cmd.Parameters.Add("@giaBan", SqlDbType.Money).Value = textBox6.Text;
+            cmd.Parameters.Add("@dieuKien", SqlDbType.Text).Value = textBox7.Text;
+            cmd.Parameters.Add("@ngayHetHan", SqlDbType.DateTime).Value = textBox8.Text;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox4.Text) || string.IsNullOrWhiteSpace(textBox5.Text) || string.IsNullOrWhiteSpace(textBox6.Text) || string.IsNullOrWhiteSpace(textBox8.Text))
+            {
+                MessageBox.Show("Please provide information!");
+                return;
+            }
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "sp_them_NhaBan_Fixed";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@maChuNha", SqlDbType.Char).Value = Account.username;
+            cmd.Parameters.Add("@maNha", SqlDbType.Char).Value = textBox4.Text;
+            cmd.Parameters.Add("@soLuongPhong", SqlDbType.Int).Value = textBox5.Text;
+            cmd.Parameters.Add("@giaBan", SqlDbType.Money).Value = textBox6.Text;
+            cmd.Parameters.Add("@dieuKien", SqlDbType.Text).Value = textBox7.Text;
+            cmd.Parameters.Add("@ngayHetHan", SqlDbType.DateTime).Value = textBox8.Text;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
         }
     }
 }
