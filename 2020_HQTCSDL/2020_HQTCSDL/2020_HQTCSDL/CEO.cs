@@ -38,10 +38,8 @@ namespace _2020_HQTCSDL
             da.SelectCommand = cmd;
             DataTable dt = new DataTable();
             da.Fill(dt);
-            foreach(DataRow dr in dt.Rows)
-            {
-                comboBox1.Items.Add(dr["MaCN"].ToString());
-            }
+            comboBox1.DataSource = dt;
+            box_ChiNhanh.DataSource = dt;
             con.Close();
         }
 
@@ -74,7 +72,7 @@ namespace _2020_HQTCSDL
             SqlConnection con = new SqlConnection(Account.connectString); // connectString có sẵn những phải đổi link DB ở login.cs
             SqlCommand cmd = con.CreateCommand();
            
-            cmd.CommandText = "sp_tang_luong_theochinhanh"; // tên proc
+            cmd.CommandText = "sp_tang_luong_theochinhanh_Fixed"; // tên proc
             cmd.CommandType = CommandType.StoredProcedure; // cái này là loại cmd thôi
             cmd.Parameters.Add("@maCN", SqlDbType.Char).Value = box_ChiNhanh.SelectedValue;//add tham biến
             cmd.Parameters.Add("@hesoLuong", SqlDbType.Float).Value = textBox_hsLuong.Text; 
@@ -111,9 +109,40 @@ namespace _2020_HQTCSDL
 
             da.Fill(dt);
             CEOGridView.DataSource = dt;
+        }
+        /*
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "ChuyenNV_Error";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@manv", SqlDbType.Char).Value = textBox1.Text;
+            cmd.Parameters.Add("@mcn", SqlDbType.Char).Value = comboBox1.SelectedItem;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
 
         }
-	private void button3_Click(object sender, EventArgs e)
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(Account.connectString);
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "ChuyenNV";
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            cmd.Parameters.Add("@manv", SqlDbType.Char).Value = textBox1.Text;
+            cmd.Parameters.Add("@mcn", SqlDbType.Char).Value = comboBox1.SelectedItem;
+            da.Fill(dt);
+            CEOGridView.DataSource = dt;
+        }
+        */
+        private void button3_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox_hsLuong.Text))
             {
@@ -134,7 +163,8 @@ namespace _2020_HQTCSDL
             da.Fill(dt);
             CEOGridView.DataSource = dt;//binding data
         }
-        private void button4_Click(object sender, EventArgs e)
+
+        private void button4_Click_1(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Account.connectString);
             SqlCommand cmd = con.CreateCommand();
@@ -147,10 +177,9 @@ namespace _2020_HQTCSDL
             cmd.Parameters.Add("@mcn", SqlDbType.Char).Value = comboBox1.SelectedItem;
             da.Fill(dt);
             CEOGridView.DataSource = dt;
-
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click_1(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Account.connectString);
             SqlCommand cmd = con.CreateCommand();
