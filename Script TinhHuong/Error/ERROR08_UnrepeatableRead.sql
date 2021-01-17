@@ -3,7 +3,7 @@
 --T2 (User = người thuê): người thuê NT000001 thực hiện update thông tin của mình
 
 ------TRAN 01
-create OR alter proc sp_xem_NguoiThue
+create OR alter proc sp_xem_NguoiThue_er8
 @MaCN varchar(8)
 as
 begin
@@ -16,7 +16,7 @@ end
 GO
 
 ------TRAN 02
-create OR alter proc sp_update_NguoiThue
+create OR alter proc sp_update_NguoiThue_er8
 @maNT char(8),
 @TenNT nvarchar(20)
 as
