@@ -167,7 +167,7 @@
             this.button1.TabIndex = 33;
             this.button1.Text = "Thống kê Nhà_Fix";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            //this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -178,7 +178,7 @@
             this.button3.TabIndex = 34;
             this.button3.Text = "Thêm Hợp đồng_Fix";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            //this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button4
             // 
