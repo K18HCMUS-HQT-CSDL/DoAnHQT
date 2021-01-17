@@ -40,8 +40,7 @@ exec sp_addlogin 'NT000005', 'thue','HQT_CSDL'
 exec sp_addlogin 'NT000006',  'thue','HQT_CSDL'
 exec sp_addlogin 'NT000002',  'thue','HQT_CSDL'
 
-exec sp_addlogin 'CN000001', 'chunha','HQT_CSDL'
-exec sp_addlogin 'CN000002',  'chunha','HQT_CSDL'
+exec sp_addlogin 'HOST0001', 'chunha','HQT_CSDL'
 exec sp_addlogin 'HOST0002',  'chunha','HQT_CSDL'
 
 --Tao user
@@ -65,9 +64,7 @@ GO
 CREATE USER [NT000002] FOR LOGIN [NT000002] WITH DEFAULT_SCHEMA=[dbo]
 GO
 
-CREATE USER [CN000001] FOR LOGIN [CN000001] WITH DEFAULT_SCHEMA=[dbo]
-GO
-CREATE USER [CN000002] FOR LOGIN [CN000002] WITH DEFAULT_SCHEMA=[dbo]
+CREATE USER [HOST0001] FOR LOGIN [HOST0001] WITH DEFAULT_SCHEMA=[dbo]
 GO
 CREATE USER [HOST0002] FOR LOGIN [HOST0002] WITH DEFAULT_SCHEMA=[dbo]
 GO
@@ -85,8 +82,7 @@ exec sp_addrolemember 'NguoiThue', 'NT000006'
 exec sp_addrolemember 'NguoiThue', 'NT000005'
 exec sp_addrolemember 'NguoiThue', 'NT000002'
 
-exec sp_addrolemember 'ChuNha', 'CN000001'
-exec sp_addrolemember 'ChuNha', 'CN000002'
+exec sp_addrolemember 'ChuNha', 'HOST0001'
 exec sp_addrolemember 'ChuNha', 'HOST0002'
 
 --Gan chuc nang login
