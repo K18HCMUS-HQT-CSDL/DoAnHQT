@@ -81,6 +81,7 @@
             this.textBox_MaNT.Name = "textBox_MaNT";
             this.textBox_MaNT.Size = new System.Drawing.Size(121, 26);
             this.textBox_MaNT.TabIndex = 45;
+            this.textBox_MaNT.TextChanged += new System.EventHandler(this.textBox_MaNT_TextChanged);
             // 
             // label4
             // 
@@ -126,6 +127,7 @@
             this.textbox_role.Name = "textbox_role";
             this.textbox_role.Size = new System.Drawing.Size(100, 26);
             this.textbox_role.TabIndex = 40;
+            this.textbox_role.TextChanged += new System.EventHandler(this.textbox_role_TextChanged);
             // 
             // button2
             // 

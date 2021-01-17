@@ -11,7 +11,7 @@ AS
 BEGIN
 BEGIN TRAN --sp_updateLSX
 	SET TRAN ISOLATION LEVEL SERIALIZABLE
-	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WHERE MaNT = @maNT and MaNha = @maNha)
+	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WITH (UPDLOCK) WHERE MaNT = @maNT and MaNha = @maNha)
 	IF (@nxet is not null)
 		BEGIN
 			SET @nxet = @nxet + @NX
@@ -61,7 +61,7 @@ AS
 BEGIN
 	BEGIN TRAN 
 	SET TRAN ISOLATION LEVEL SERIALIZABLE
-	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WHERE MaNT = @maNT and MaNha = @maNha)
+	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WHERE WITH (UPDLOCK) MaNT = @maNT and MaNha = @maNha)
 	IF (@nxet is not null)
 		BEGIN
 			SET @nxet = @nxet + @NX
