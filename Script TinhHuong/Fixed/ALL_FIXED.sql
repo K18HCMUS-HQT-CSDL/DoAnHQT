@@ -188,6 +188,7 @@ BEGIN CATCH
 	   
     RAISERROR ('Them nha ban khong thanh cong',1,1);
 END CATCH
+--SELECT * FROM dbo.NhaBan WHERE MaNha=@maNha
 END
 GO
 
@@ -310,6 +311,8 @@ go
 
 
 
+-- ERROR06
+-----------------------------------------
 --ERR06: Lost Update
 --T1 (User = Nhân viên): thực hiện update số phòng sau khi hợp đồng thành công
 --T2 (User = Chủ nhà): thực hiện update số phòng còn lại mới
