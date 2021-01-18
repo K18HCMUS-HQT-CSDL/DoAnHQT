@@ -197,7 +197,7 @@ namespace _2020_HQTCSDL
         {
 
         }
-
+        /*
         private void button6_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(Account.connectString);
@@ -233,7 +233,7 @@ namespace _2020_HQTCSDL
             da.Fill(dt);
             CEOGridView.DataSource = dt;
         }
-
+        */
         private void textbox_role_TextChanged(object sender, EventArgs e)
         {
 
