@@ -11,7 +11,9 @@ AS
 BEGIN
 BEGIN TRAN --sp_updateLSX
 	SET TRAN ISOLATION LEVEL SERIALIZABLE
-	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WHERE MaNT = @maNT and MaNha = @maNha)
+	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem 
+									WHERE MaNT = @maNT and MaNha = @maNha 
+											AND NgayXem = (select max(lsx.NgayXem) from LichSuXem lsx WHERE lsx.MaNT = @maNT and lsx.MaNha = @maNha) )
 	IF (@nxet is not null)
 		BEGIN
 			SET @nxet = @nxet + @NX

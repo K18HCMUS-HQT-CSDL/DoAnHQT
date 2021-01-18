@@ -79,5 +79,10 @@ namespace _2020_HQTCSDL
             da.Fill(dt);
             CEOGridView.DataSource = dt;
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

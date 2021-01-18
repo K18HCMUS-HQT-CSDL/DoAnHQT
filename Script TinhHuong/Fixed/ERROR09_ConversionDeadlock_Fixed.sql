@@ -3,7 +3,7 @@
 use HQT_CSDL
 go
 
-CREATE or ALTER PROC sp_updateLSX
+CREATE or ALTER PROC sp_updateLSX_Fixed
 @maNT CHAR(8),
 @maNha CHAR(8),
 @NX NVARCHAR(50)
@@ -53,7 +53,7 @@ END
 GO
 
 ------------------TRAN 02
-CREATE or ALTER PROC sp_updateLSX_2
+CREATE or ALTER PROC sp_updateLSX_2_Fixed
 @maNT CHAR(8),
 @maNha CHAR(8),
 @NX NVARCHAR(50)
@@ -61,7 +61,7 @@ AS
 BEGIN
 	BEGIN TRAN 
 	SET TRAN ISOLATION LEVEL SERIALIZABLE
-	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WHERE WITH (UPDLOCK) MaNT = @maNT and MaNha = @maNha)
+	DECLARE @nxet NVARCHAR(50) = (SELECT NhanXet FROM LichSuXem WITH (UPDLOCK) WHERE MaNT = @maNT and MaNha = @maNha)
 	IF (@nxet is not null)
 		BEGIN
 			SET @nxet = @nxet + @NX
@@ -100,8 +100,10 @@ END
 GO
 
 ------TEST---
-EXEC sp_updateLSX_2 'NT000005', 'NHA00005', N' phòng nhỏ'
+EXEC sp_updateLSX_2_Fixed'NT000005', 'NHA00005', N' phòng nhỏ'
 select * from LichSuXem
 
-EXEC sp_updateLSX 'NT000005', 'NHA00005', N' hẻm ồn'
+EXEC sp_updateLSX_Fixed 'NT000005', 'NHA00005', N' hẻm ồn'
 select * from LichSuXem
+
+select * from HopDong

@@ -6,10 +6,16 @@
 
 /* Drop Foreign Key Constraints */
 
+use master
+go
+if DB_ID('HQT_CSDL') is not null
+	drop database HQT_CSDL
+
 create database HQT_CSDL
 go
 
 use HQT_CSDL
+go
 
 IF EXISTS (SELECT 1 FROM dbo.sysobjects WHERE id = object_id(N'[FK_ChiNhanh_NhanVien]') AND OBJECTPROPERTY(id, N'IsForeignKey') = 1) 
 ALTER TABLE [ChiNhanh] DROP CONSTRAINT [FK_ChiNhanh_NhanVien]
@@ -135,7 +141,8 @@ GO
 
 CREATE TABLE [HopDong]
 (
-	[MaHD] char(8) NOT NULL,
+	[ID] int identity(1,1),
+	[MaHD] AS 'HD' + RIGHT('000000' + cast(ID as varchar(6)), 6) persisted NOT NULL,
 	[LoaiHD] bit NOT NULL,
 	[ThoiGian] datetime NOT NULL,
 	[MaNT] char(8) NULL,

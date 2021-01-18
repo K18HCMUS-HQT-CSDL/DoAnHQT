@@ -1,6 +1,6 @@
 -- TINH HUONG: ca hai nhan vien deu giao dich nha ban
 -------------TRAN 01
-CREATE or ALTER PROC sp_them_HDnhaban_DL
+CREATE or ALTER PROC sp_them_HDnhaban_DL_Fixed
 @maHD CHAR(8),
 @maNT CHAR(8),
 @maNha CHAR(8)
@@ -57,7 +57,7 @@ END
 GO
 
 --------------------------------- TRAN 02
-CREATE or ALTER PROC sp_them_HDnhaban_DL_2
+CREATE or ALTER PROC sp_them_HDnhaban_DL_2_Fixed
 @maHD CHAR(8),
 @maNT CHAR(8),
 @maNha CHAR(8)
@@ -115,8 +115,8 @@ END
 GO
 
 -----TEST
-EXEC sp_them_HDnhaban_DL 'HD000009', 'NT000001', 'NHA00006'
-EXEC sp_them_HDnhaban_DL_2 'HD0000010', 'NT000001', 'NHA00006'
+EXEC sp_them_HDnhaban_DL_Fixed 'HD000009', 'NT000001', 'NHA00006'
+EXEC sp_them_HDnhaban_DL_2_Fixed 'HD0000010', 'NT000001', 'NHA00006'
 --select * from HopDong
 --select * from NguoiThue
 

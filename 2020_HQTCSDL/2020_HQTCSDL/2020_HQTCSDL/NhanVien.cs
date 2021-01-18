@@ -16,7 +16,7 @@ namespace _2020_HQTCSDL
         public NhanVien()
         {
             InitializeComponent();
-            this.textbox_role.AppendText(Account.username);
+            //this.textbox_role.AppendText(Account.username);
             
         }
 
@@ -27,7 +27,8 @@ namespace _2020_HQTCSDL
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(Account.connectString);
+            //SqlConnection con = new SqlConnection(Account.connectString);
+            SqlConnection con = new SqlConnection("Server='DESKTOP-CD2TKKI\\MSSQLSERVER01';Database=HQT_CSDL;Trusted_Connection=true;");
             SqlCommand cmd = con.CreateCommand();
             con.Open();
             cmd.CommandText = "select * from Nha where MaNV=@maNV";
@@ -81,6 +82,95 @@ namespace _2020_HQTCSDL
         }
 
         private void textBox_MaNT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NhanVien_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(richTextBox1.Text))
+                {
+                    MessageBox.Show("Please provide information");
+                    return;
+                }
+                SqlConnection con = new SqlConnection(Account.connectString);
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "sp_them_HDNhaBan";
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                cmd.Parameters.Add("@maNV", SqlDbType.Char).Value = textbox_role.Text;
+                cmd.Parameters.Add("@maHD", SqlDbType.Char).Value = textBox_MaHD.Text;
+                cmd.Parameters.Add("@maNha", SqlDbType.Char).Value = textBox_MaNha.Text;
+                cmd.Parameters.Add("@maNT", SqlDbType.Char).Value = textBox_MaNT.Text;
+                cmd.ExecuteNonQuery();
+                da.Fill(dt);
+                CEOGridView.DataSource = dt;
+                con.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_role_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_MaHD_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
         {
 
         }
